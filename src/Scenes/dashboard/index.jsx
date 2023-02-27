@@ -1,5 +1,5 @@
 
-import React from 'react'
+import React, { memo } from 'react'
 
  function Dashboard() {
   return (
@@ -10,4 +10,4 @@ import React from 'react'
 }
 
 
-export default Dashboard;
+export default memo(Dashboard);
