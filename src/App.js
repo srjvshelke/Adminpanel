@@ -5,6 +5,10 @@ import Sidebarr from "./Scenes/global/Sidebar";
 
 import { CssBaseline, ThemeProvider } from "@mui/material";
 import { ColorModeContext, useMode } from "./theme";
+import Dashboard from "./Scenes/dashboard";
+import UserManagement from "./Scenes/UserManagement/index";
+import Adduser from "./Components/Adduser";
+import CustomerManagement from "./Scenes/Customermanagement/CustomerManagement";
 
 
 function App() {
@@ -12,16 +16,22 @@ function App() {
   const [isSidebar, setIsSidebar] = useState(true);
   return (
     <ColorModeContext.Provider value={colorMode}>
-    <ThemeProvider theme={theme}>
-      <CssBaseline />
-      <div className="app">
-        <Sidebarr isSidebar={isSidebar} />
-        <main className="content">
-          <Topbar setIsSidebar={setIsSidebar}/>
-        </main>
-      </div>
-    </ThemeProvider>
-  </ColorModeContext.Provider>
+      <ThemeProvider theme={theme}>
+        <CssBaseline />
+        <div className="app">
+          <Sidebarr isSidebar={isSidebar} />
+          <main className="content">
+            <Topbar setIsSidebar={setIsSidebar} />
+            <Routes>
+              <Route path="/" element={<Dashboard />} />
+              <Route path="/usermanagement" element={<UserManagement/>} />
+              <Route path="/Adduser" element={<Adduser/>} />
+              <Route path="/CustomerManagement" element={<CustomerManagement/>} />
+            </Routes>
+          </main>
+        </div>
+      </ThemeProvider>
+    </ColorModeContext.Provider>
   );
 }
 
