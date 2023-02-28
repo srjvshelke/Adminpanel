@@ -1,7 +1,7 @@
 import { memo, useState } from "react";
 import { ProSidebar, Menu, MenuItem } from "react-pro-sidebar";
 import { Box, IconButton, Typography, useTheme } from "@mui/material";
-import { Link } from "react-router-dom";
+
 
 import "react-pro-sidebar/dist/css/styles.css";
 import { tokens } from "../../theme";
@@ -18,26 +18,18 @@ import PieChartOutlineOutlinedIcon from "@mui/icons-material/PieChartOutlineOutl
 import TimelineOutlinedIcon from "@mui/icons-material/TimelineOutlined";
 import MenuOutlinedIcon from "@mui/icons-material/MenuOutlined";
 import MapOutlinedIcon from "@mui/icons-material/MapOutlined";
-
-const Item = ({ title, to, icon, selected, setSelected }) => {
-  const theme = useTheme();
-  const colors = tokens(theme.palette.mode);
-  return (
-    <MenuItem
-      active={selected === title}
-      style={{
-        color: colors.grey[100],
-      }}
-      onClick={() => setSelected(title)}
-      icon={icon}
-    >
-      <Typography>{title}</Typography>
-      <Link to={to} />
-    </MenuItem>
-  );
-};
+import Profile from "../../Components/Profile";
+import Item from "./Item";
+import FormatListBulletedIcon from '@mui/icons-material/FormatListBulleted';
+import AssessmentIcon from '@mui/icons-material/Assessment';
+import SupervisedUserCircleIcon from '@mui/icons-material/SupervisedUserCircle';
 
 const Sidebarr = () => {
+  // useEffect(() => {
+
+  // }, [])
+
+
   console.log('sidebar');
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
@@ -93,30 +85,7 @@ const Sidebarr = () => {
           </MenuItem>
 
           {!isCollapsed && (
-            <Box mb="25px">
-              <Box display="flex" justifyContent="center" alignItems="center">
-                <img
-                  alt="profile-user"
-                  width="100px"
-                  height="100px"
-                  src={`../../ASSEST/user.png`}
-                  style={{ cursor: "pointer", borderRadius: "50%" }}
-                />
-              </Box>
-              <Box textAlign="center">
-                <Typography
-                  variant="h2"
-                  color={colors.grey[100]}
-                  fontWeight="bold"
-                  sx={{ m: "10px 0 0 0" }}
-                >
-                  SURAJ SHELKE
-                </Typography>
-                <Typography variant="h5" color={colors.greenAccent[500]}>
-                 Admin
-                </Typography>
-              </Box>
-            </Box>
+            <Profile />
           )}
 
           <Box paddingLeft={isCollapsed ? undefined : "10%"}>
@@ -139,26 +108,50 @@ const Sidebarr = () => {
             <Item
               title="User Management"
               to="/usermanagement"
-              icon={<PeopleOutlinedIcon/>}
+              icon={<PeopleOutlinedIcon />}
               selected={selected}
               setSelected={setSelected}
             />
- 
- <Item
+
+            <Item
               title="Customer Management"
               to="/CustomerManagement"
-              icon={<Groups2Icon/>}
+              icon={<Groups2Icon />}
               selected={selected}
               setSelected={setSelected}
             />
-            <Typography
+            <Item
+              title="Work Order Lists"
+              to="/WorkOrderList"
+              icon={<FormatListBulletedIcon />}
+              selected={selected}
+              setSelected={setSelected}
+            />
+            <Item
+              title="Visit List"
+              to="/visitList"
+              icon={<SupervisedUserCircleIcon />}
+              selected={selected}
+              setSelected={setSelected}
+            />
+
+            <Item
+              title="Reports"
+              to="/Reports"
+              icon={<AssessmentIcon />}
+              selected={selected}
+              setSelected={setSelected}
+              fontSize="20px"
+              fontWeight="bold"
+            />
+            {/* <Typography
               variant="h6"
               color={colors.grey[300]}
               sx={{ m: "15px 0 5px 20px" }}
             >
               Pages
-            </Typography>
- 
+            </Typography> */}
+
           </Box>
         </Menu>
       </ProSidebar>
