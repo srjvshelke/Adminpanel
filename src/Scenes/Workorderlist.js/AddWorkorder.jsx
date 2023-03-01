@@ -43,7 +43,7 @@ function AddWorkorder() {
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'center',
-                height: '100vh',
+                minHeight:"100vh"
             }}
             >
                 <Formik
@@ -66,8 +66,8 @@ function AddWorkorder() {
                                 gap="20px"
                                 gridTemplateColumns="repeat(4, minmax(0, 1fr))"
                                 sx={{
-                                    minHeight: "60%",
-                                    minWidth: "60%",
+                                    minHeight: "90%",
+                                    minWidth: "90%",
                                     backgroundColor: colors.blueAccent[400],
                                     "& > div": { gridColumn: isNonMobile ? undefined : "span 4" },
                                 }}>
