@@ -5,6 +5,8 @@ import { tokens } from "../../theme";
 import { Formik } from "formik";
 import * as yup from "yup";
 import useMediaQuery from "@mui/material/useMediaQuery";
+import TextFieldforforms from "../../Components/TextField";
+import Buttonn from "../../Components/Button.jsx"
 function AddWorkorder() {
     const isNonMobile = useMediaQuery("(min-width:600px)");
 
@@ -41,9 +43,9 @@ function AddWorkorder() {
         <>
             <Box sx={{
                 display: 'flex',
+                justifyContent: "center",
                 alignItems: 'center',
-                justifyContent: 'center',
-                minHeight:"100vh"
+                Height: "100vh"
             }}
             >
                 <Formik
@@ -60,81 +62,26 @@ function AddWorkorder() {
                         handleSubmit,
                     }) => (
                         <form onSubmit={handleSubmit}>
+                            <Box sx={{
+                                marginTop:"20%",
+                                Height: "90%",
+                                Width: "90%",
+                                backgroundColor: colors.blueAccent[400],
+                            }}>
+                                <Box sx={{
+                               
+                            }}
+                                >
+                                    <TextFieldforforms label="name" />
+                                    <TextFieldforforms label="name" />
+                                    <TextFieldforforms label="name" />
 
-                            <Box
-                                display="grid"
-                                gap="20px"
-                                gridTemplateColumns="repeat(4, minmax(0, 1fr))"
-                                sx={{
-                                    minHeight: "90%",
-                                    minWidth: "90%",
-                                    backgroundColor: colors.blueAccent[400],
-                                    "& > div": { gridColumn: isNonMobile ? undefined : "span 4" },
-                                }}>
-                                <TextField
-                                    fullWidth
-                                    variant="filled"
-                                    type="text"
-                                    label="Password"
-                                    onBlur={handleBlur}
-                                    // onChange={handleChange}
-                                    // value={values.contact}
-                                    name="Password"
-                                    // error={!!touched.contact && !!errors.contact}
-                                    // helperText={touched.contact && errors.contact}
-                                    sx={{ gridColumn: "span 2" }}
-                                />
-                                <TextField
-                                    fullWidth
-                                    variant="filled"
-                                    type="text"
-                                    label="Password"
-                                    onBlur={handleBlur}
-                                    // onChange={handleChange}
-                                    // value={values.contact}
-                                    name="Password"
-                                    // error={!!touched.contact && !!errors.contact}
-                                    // helperText={touched.contact && errors.contact}
-                                    sx={{ gridColumn: "span 2" }}
-                                />
-                                <TextField
-                                    fullWidth
-                                    variant="filled"
-                                    type="text"
-                                    label="Password"
-                                    onBlur={handleBlur}
-                                    // onChange={handleChange}
-                                    // value={values.contact}
-                                    name="Password"
-                                    // error={!!touched.contact && !!errors.contact}
-                                    // helperText={touched.contact && errors.contact}
-                                    sx={{ gridColumn: "span 2" }}
-                                />
-                                 <Button type="submit" color="secondary" variant="contained"
-                                    sx={{
-                                        // marginLeft:"10px",
-                                        width: '100px', height: '40px', fontSize: "14px",
-                                        fontWeight: "bold",
-                                    }}>
-                                    Upload file
-                                </Button>
-                            </Box>
-                            <Box display="flex" justifyContent="center" alignItems='center' mt="40px">
-                                <Button type="submit" color="secondary" variant="contained"
-                                    sx={{
-                                        width: '100px', height: '40px', fontSize: "14px",
-                                        fontWeight: "bold",
-                                    }}>
-                                    Add 
-                                </Button>
-                                <Button type="submit" color="secondary" variant="contained"
-                                    sx={{
-                                        marginLeft:"10px",
-                                        width: '100px', height: '40px', fontSize: "14px",
-                                        fontWeight: "bold",
-                                    }}>
-                                    close
-                                </Button>
+                                    <Buttonn buttonname="Upload" />
+                                </Box>
+                                <Box display="flex" justifyContent="center" alignItems='center' mt="40px">
+                                    <Buttonn />
+                                    <Buttonn />
+                                </Box>
                             </Box>
                         </form>
                     )}

@@ -51,14 +51,14 @@ const CustomerManagement = () => {
   return (
     <Box m="20px">
       <Header
-        title="USER MANAGEMENT"
-        subtitle="List of Users"
+        title="Customer MANAGEMENT"
+        subtitle="List of Customer"
       />
       <Box display="flex" justifyContent="flex-end" alignItems="center">
       
         <Button 
         component={Link}
-          to="/Adduser"
+          to="/AddWorkorder"
           sx={{
             marginLeft:"20px",
             backgroundColor: colors.blueAccent[700],
@@ -71,7 +71,7 @@ const CustomerManagement = () => {
 
           }}
         >
-         ADD USER
+         ADD Customer
         </Button>
       </Box>
       <Box
