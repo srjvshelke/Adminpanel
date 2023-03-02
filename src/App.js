@@ -25,17 +25,17 @@ function App() {
         <div className="app">
           <Sidebarr isSidebar={isSidebar} />
           <main className="content">
-         
+
             <Topbar setIsSidebar={setIsSidebar} />
             <Routes>
               <Route path="/" element={<Dashboard />} />
-              <Route path="/usermanagement" element={<UserManagement/>} />
-              <Route path="/Adduser" element={<Adduser/>} />
-              <Route path="/CustomerManagement" element={<CustomerManagement/>} />
-              <Route path="/WorkOrderList" element={<WorkOrderList/>} />
-              <Route path="/VisitList" element={<VisitList/>} />
-              <Route path="/Reports" element={<Reports/>} />
-             <Route path="/AddWorkorder" element={<AddWorkorder/>} />
+              <Route path="/usermanagement" element={<UserManagement />} />
+              <Route path="/Adduser" element={<Adduser />} />
+              <Route path="/CustomerManagement" element={<CustomerManagement />} />
+              <Route path="/WorkOrderList" element={<WorkOrderList />} />
+              <Route path="/VisitList" element={<VisitList />} />
+              <Route path="/Reports" element={<Reports />} />
+              <Route path="/AddWorkorder" element={<AddWorkorder />} />
             </Routes>
           </main>
         </div>

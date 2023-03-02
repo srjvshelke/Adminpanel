@@ -6,7 +6,8 @@ import { Formik } from "formik";
 import * as yup from "yup";
 import useMediaQuery from "@mui/material/useMediaQuery";
 import TextFieldforforms from "../../Components/TextField";
-import Buttonn from "../../Components/Button.jsx"
+import Buttonn from "../../Components/Button.jsx";
+import FileUploadIcon from '@mui/icons-material/FileUpload';
 function AddWorkorder() {
     const isNonMobile = useMediaQuery("(min-width:600px)");
 
@@ -42,10 +43,14 @@ function AddWorkorder() {
     return (
         <>
             <Box sx={{
-                display: 'flex',
+                display: "flex",
+                height: "100vh",
                 justifyContent: "center",
                 alignItems: 'center',
-                Height: "100vh"
+                // position: 'relative',
+                borderRadius: "5px",
+                backgroundColor: colors.primary[400],
+                padding: '20px'
             }}
             >
                 <Formik
@@ -61,32 +66,42 @@ function AddWorkorder() {
                         handleChange,
                         handleSubmit,
                     }) => (
-                        <form onSubmit={handleSubmit}>
-                            <Box sx={{
-                                marginTop:"20%",
-                                Height: "90%",
-                                Width: "90%",
-                                backgroundColor: colors.blueAccent[400],
-                            }}>
+                        <Box sx={{
+                            maxWidth: "700px",
+                            width: "100%",
+                            padding: "25px 30px",
+                            borderRadius: "25px",
+                            backgroundColor: colors.blueAccent[400],
+                        }}>
+                            <form onSubmit={handleSubmit}>
                                 <Box sx={{
-                               
-                            }}
+                                    display: "flex", flexWrap: "wrap", justifyContent: "space-between", alignItems: 'center', marginX: "20px", marginY: "30px"
+                                }}
                                 >
-                                    <TextFieldforforms label="name" />
-                                    <TextFieldforforms label="name" />
-                                    <TextFieldforforms label="name" />
 
-                                    <Buttonn buttonname="Upload" />
+                                    {/* <Box> */}
+                                    <TextFieldforforms label="Work Order ID" />
+                                    <TextFieldforforms label="Title" />
+                                    <TextFieldforforms label="Assign To" />
+
+                                    <Buttonn width='35%' buttonname="Upload File" marginBottom="15px" icon={<FileUploadIcon sx={{ mr: "10px" }} />} />
                                 </Box>
-                                <Box display="flex" justifyContent="center" alignItems='center' mt="40px">
-                                    <Buttonn />
-                                    <Buttonn />
+                                <Box sx={{
+                                    display: "flex",
+                                    justifyContent: "space-evenly",
+                                    alignItems: 'center',
+                                }} >
+                                    <Buttonn  width='30%' buttonname="Add" marginright="20px"/>
+                                    <Buttonn  width='30%' buttonname="Close" />
                                 </Box>
-                            </Box>
-                        </form>
-                    )}
+                                {/* </Box> */}
+
+
+                            </form>
+
+                        </Box>)}
                 </Formik>
-            </Box>
+            </Box >
 
         </>
     )
