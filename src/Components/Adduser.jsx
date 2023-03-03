@@ -1,14 +1,20 @@
 import { Box, Button, MenuItem, TextField } from "@mui/material";
 import { Formik } from "formik";
-import * as yup from "yup";
+
 import useMediaQuery from "@mui/material/useMediaQuery";
 import Header from "./Header";
+import TextFieldforforms from "../Components/TextField";
+import { checkoutSchemaforadduser } from "../formsvalidation/yupschema";
+import { useDispatch } from "react-redux";
+// import checkoutSchemaforadduser from "../formsvalidation/yupschema"
 
 const Adduser = () => {
     const isNonMobile = useMediaQuery("(min-width:600px)");
+    const dispatch = new useDispatch();
 
     const handleFormSubmit = (values) => {
-        console.log(values);
+        dispatch(values);
+       
     };
 
     return (
@@ -18,7 +24,7 @@ const Adduser = () => {
             <Formik
                 onSubmit={handleFormSubmit}
                 initialValues={initialValues}
-                validationSchema={checkoutSchema}
+                validationSchema={checkoutSchemaforadduser}
             >
                 {({
                     values,
@@ -41,8 +47,7 @@ const Adduser = () => {
                             }}
 
                         >
-                            <TextField
-
+                            <TextFieldforforms
                                 fullWidth
                                 variant="filled"
                                 type="text"
@@ -55,7 +60,8 @@ const Adduser = () => {
                                 helperText={touched.firstName && errors.firstName}
                                 sx={{ gridColumn: "span 2" }}
                             />
-                            <TextField
+
+                            <TextFieldforforms
                                 fullWidth
                                 variant="filled"
                                 type="text"
@@ -69,20 +75,20 @@ const Adduser = () => {
                                 sx={{ gridColumn: "span 2" }}
                             />
 
-                            <TextField
+                            <TextFieldforforms
                                 fullWidth
                                 variant="filled"
                                 type="text"
                                 label="Employee ID"
                                 onBlur={handleBlur}
                                 onChange={handleChange}
-                                value={values.contact}
+                                value={values.Employeeid}
                                 name="Employeeid"
-                                error={!!touched.contact && !!errors.contact}
-                                helperText={touched.contact && errors.contact}
+                                error={!!touched.Employeeid && !!errors.Employeeid}
+                                helperText={touched.Employeeid && errors.Employeeid}
                                 sx={{ gridColumn: "span 2" }}
                             />
-                            <TextField
+                            <TextFieldforforms
                                 fullWidth
                                 variant="filled"
                                 type="text"
@@ -95,7 +101,7 @@ const Adduser = () => {
                                 helperText={touched.email && errors.email}
                                 sx={{ gridColumn: "span 2" }}
                             />
-                            <TextField
+                            <TextFieldforforms
                                 fullWidth
                                 variant="filled"
                                 type="text"
@@ -109,46 +115,46 @@ const Adduser = () => {
                                 sx={{ gridColumn: "span 2" }}
                             />
                             <TextField
-                             select
+                                select
                                 fullWidth
                                 variant="filled"
                                 // type="text"
                                 label="Type"
                                 onBlur={handleBlur}
                                 onChange={handleChange}
-                                value={values.contact}
+                                value={values.Type}
                                 name="Type"
-                                error={!!touched.contact && !!errors.contact}
-                                helperText={touched.contact && errors.contact}
+                                error={!!touched.Type && !!errors.Type}
+                                helperText={touched.Type && errors.Type}
                                 sx={{ gridColumn: "span 2" }}
                             >
                                 <MenuItem value="Contractor">Contractor</MenuItem>
                                 <MenuItem value="Technician">Technician</MenuItem>
                             </TextField >
-                            <TextField
+                            <TextFieldforforms
                                 fullWidth
                                 variant="filled"
                                 type="text"
                                 label="Password"
                                 onBlur={handleBlur}
                                 onChange={handleChange}
-                                value={values.contact}
+                                value={values.Password}
                                 name="Password"
-                                error={!!touched.contact && !!errors.contact}
-                                helperText={touched.contact && errors.contact}
+                                error={!!touched.Password && !!errors.Password}
+                                helperText={touched.Password && errors.Password}
                                 sx={{ gridColumn: "span 2" }}
                             />
-                            <TextField
+                            <TextFieldforforms
                                 fullWidth
                                 variant="filled"
                                 type="text"
                                 label=" Confirm Password"
                                 onBlur={handleBlur}
                                 onChange={handleChange}
-                                value={values.contact}
-                                name="Confirm Password"
-                                error={!!touched.contact && !!errors.contact}
-                                helperText={touched.contact && errors.contact}
+                                value={values.ConfirmPassword}
+                                name="ConfirmPassword"
+                                error={!!touched.ConfirmPassword && !!errors.ConfirmPassword}
+                                helperText={touched.ConfirmPassword && errors.ConfirmPassword}
                                 sx={{ gridColumn: "span 2" }}
                             />
                         </Box>
@@ -168,27 +174,16 @@ const Adduser = () => {
     );
 };
 
-const phoneRegExp =
-    /^((\+[1-9]{1,4}[ -]?)|(\([0-9]{2,3}\)[ -]?)|([0-9]{2,4})[ -]?)*?[0-9]{3,4}[ -]?[0-9]{3,4}$/;
 
-const checkoutSchema = yup.object().shape({
-    firstName: yup.string().required("required"),
-    lastName: yup.string().required("required"),
-    email: yup.string().email("invalid email").required("required"),
-    contact: yup
-        .string()
-        .matches(phoneRegExp, "Phone number is not valid")
-        .required("required"),
-    address1: yup.string().required("required"),
-    address2: yup.string().required("required"),
-});
 const initialValues = {
     firstName: "",
     lastName: "",
+    Employeeid: "",
     email: "",
     contact: "",
-    address1: "",
-    address2: "",
+    Type: "",
+    Password: "",
+    ConfirmPassword: "",
 };
 
 export default Adduser;

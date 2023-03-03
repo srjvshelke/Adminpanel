@@ -1,6 +1,7 @@
-export const increment = ()=>{
+export const Adduser = (data)=>{
     return {
-        type:"INCREMENT"
+        type:"ADDUSER",
+        payload:data,
     }
 
 }
