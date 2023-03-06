@@ -7,11 +7,14 @@ import { useTheme } from "@mui/material";
 
 import { Link } from "react-router-dom";
 import { memo } from "react";
+import { useSelector } from "react-redux";
 
 const UserManagement = () => {
   console.log("UserManagement");
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
+  const userdata = useSelector((state) => state.user);
+  console.log(userdata);
 
   const columns = [
     { field: "id", headerName: "ID", flex: 0.5, headerAlign: 'center', align: 'center', FontSize: "60" },
@@ -47,6 +50,15 @@ const UserManagement = () => {
       headerAlign: 'center'
     },
   ];
+  const rowsdata = userdata.map((row)=>({
+    id:1,
+    name:row.firstName + row.firstName + " " + row.lastName,
+    employeeid:row.Employeeid ,
+    contact:row.contact,
+    email:row.email,
+    role:row.Type,
+  }))
+  console.log(rowsdata);
 
   return (
     <Box m="20px">
@@ -55,23 +67,23 @@ const UserManagement = () => {
         subtitle="List of Users"
       />
       <Box display="flex" justifyContent="flex-end" alignItems="center">
-      
-        <Button 
-        component={Link}
+
+        <Button
+          component={Link}
           to="/Adduser"
           sx={{
-            marginLeft:"20px",
+            marginLeft: "20px",
             backgroundColor: colors.blueAccent[700],
             color: colors.grey[100],
             fontSize: "14px",
             fontWeight: "bold",
             padding: "8px 17px",
             width: '100px',
-             height: '40px'
+            height: '40px'
 
           }}
         >
-         ADD USER
+          ADD USER
         </Button>
       </Box>
       <Box
@@ -111,7 +123,7 @@ const UserManagement = () => {
       >
         <DataGrid
 
-          rows={mockDataContacts}
+          rows={rowsdata}
           columns={columns}
           components={{ Toolbar: GridToolbar }}
         />

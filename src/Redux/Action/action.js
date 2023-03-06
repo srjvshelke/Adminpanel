@@ -1,4 +1,4 @@
-export const Adduser = (data)=>{
+export const Addauser = (data)=>{
     return {
         type:"ADDUSER",
         payload:data,

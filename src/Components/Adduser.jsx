@@ -6,16 +6,29 @@ import Header from "./Header";
 import TextFieldforforms from "../Components/TextField";
 import { checkoutSchemaforadduser } from "../formsvalidation/yupschema";
 import { useDispatch } from "react-redux";
+import { Addauser } from "../Redux/Action/action";
 // import checkoutSchemaforadduser from "../formsvalidation/yupschema"
 
 const Adduser = () => {
     const isNonMobile = useMediaQuery("(min-width:600px)");
     const dispatch = new useDispatch();
+    
+const initialValues = {
+    firstName: "",
+    lastName: "",
+    Employeeid: "",
+    email: "",
+    contact: "",
+    Type: "",
+    Password: "",
+    ConfirmPassword: "",
+};
 
     const handleFormSubmit = (values) => {
-        dispatch(values);
+        dispatch(Addauser(values));
        
     };
+
 
     return (
         <Box m="20px" >
@@ -175,15 +188,5 @@ const Adduser = () => {
 };
 
 
-const initialValues = {
-    firstName: "",
-    lastName: "",
-    Employeeid: "",
-    email: "",
-    contact: "",
-    Type: "",
-    Password: "",
-    ConfirmPassword: "",
-};
 
 export default Adduser;

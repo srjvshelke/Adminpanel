@@ -5,11 +5,9 @@ import { tokens } from "../theme";
 
 
 function TextFieldforforms(props) {
-    console.log(props);
     const { variant,type, label, handleBlur,handleChange,value, name,error,helperText} = props;
     const theme = useTheme();
     const colors = tokens(theme.palette.mode);
-    console.log('TextField');
     return (
         <>
             <TextField

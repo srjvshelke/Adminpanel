@@ -1,19 +1,20 @@
-const initialstate = {};
- const user = (state = initialstate, action) => {
-    console.log(action);
-    console.log(state);
+const initialstate = [];
+const user = (state = initialstate, action) => {
+
     switch (action.type) {
-       
+
         case "ADDUSER":
-            return (
-                state + "1"
-            )
+            state = [...state, action.payload]
+
+            return state;
+            break;
 
         case "DECREMENT":
-            return state - 1
+            return state
 
         default:
             return state;
     }
 }
+
 export default user;
