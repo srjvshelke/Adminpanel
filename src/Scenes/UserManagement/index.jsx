@@ -50,8 +50,8 @@ const UserManagement = () => {
       headerAlign: 'center'
     },
   ];
-  const rowsdata = userdata.map((row)=>({
-    id:1,
+  const rowsdata = userdata.map((row,index)=>({
+    id:index+1,
     name:row.firstName + row.firstName + " " + row.lastName,
     employeeid:row.Employeeid ,
     contact:row.contact,
