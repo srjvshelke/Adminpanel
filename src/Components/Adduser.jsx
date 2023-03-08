@@ -12,21 +12,20 @@ import { Addauser } from "../Redux/Action/action";
 const Adduser = () => {
     const isNonMobile = useMediaQuery("(min-width:600px)");
     const dispatch = new useDispatch();
-    
-const initialValues = {
-    firstName: "",
-    lastName: "",
-    Employeeid: "",
-    email: "",
-    contact: "",
-    Type: "",
-    Password: "",
-    ConfirmPassword: "",
-};
+
+    const initialValues = {
+        firstName: "",
+        lastName: "",
+        Employeeid: "",
+        email: "",
+        contact: "",
+        Type: "",
+        Password: "",
+        ConfirmPassword: "",
+    };
 
     const handleFormSubmit = (values) => {
         dispatch(Addauser(values));
-       
     };
 
 
