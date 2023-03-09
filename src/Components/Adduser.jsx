@@ -5,13 +5,21 @@ import useMediaQuery from "@mui/material/useMediaQuery";
 import Header from "./Header";
 import TextFieldforforms from "../Components/TextField";
 import { checkoutSchemaforadduser } from "../formsvalidation/yupschema";
-import { useDispatch } from "react-redux";
-import { Addauser } from "../Redux/Action/action";
+import { useDispatch, useSelector } from "react-redux";
+import { Addauser, clearErrors } from "../Redux/Action/Adduser";
+import { useEffect } from "react";
+import { useAlert } from "react-alert";
+
 // import checkoutSchemaforadduser from "../formsvalidation/yupschema"
 
 const Adduser = () => {
+    const alert = useAlert();
     const isNonMobile = useMediaQuery("(min-width:600px)");
     const dispatch = new useDispatch();
+
+    const { error, loading } = useSelector(
+        (state) => state.user
+      );
 
     const initialValues = {
         firstName: "",
@@ -27,6 +35,15 @@ const Adduser = () => {
     const handleFormSubmit = (values) => {
         dispatch(Addauser(values));
     };
+
+    
+  useEffect(() => {
+    if (error) {
+      alert.error(error);
+      dispatch(clearErrors());
+    }
+  }, [dispatch, error, alert]);
+
 
 
     return (
