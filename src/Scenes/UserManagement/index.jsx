@@ -6,15 +6,15 @@ import Header from "../../Components/Header";
 import { useTheme } from "@mui/material";
 
 import { Link } from "react-router-dom";
-import { memo } from "react";
-import { useSelector } from "react-redux";
+import { memo, useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { clearErrors, getallusers } from "../../Redux/Action/Adduser";
 
 const UserManagement = () => {
-  console.log("UserManagement");
+  const dispatch = new useDispatch();
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
-  const userdata = useSelector((state) => state.user);
-  console.log(userdata);
+  const {error, users} = useSelector((state) => state.allusers);
 
   const columns = [
     { field: "id", headerName: "ID", flex: 0.5, headerAlign: 'center', align: 'center', FontSize: "60" },
@@ -50,7 +50,7 @@ const UserManagement = () => {
       headerAlign: 'center'
     },
   ];
-  const rowsdata = userdata.map((row,index)=>({
+  const rowsdata = users.map((row,index)=>({
     id:index+1,
     name:row.firstName + row.firstName + " " + row.lastName,
     employeeid:row.Employeeid ,
@@ -59,6 +59,17 @@ const UserManagement = () => {
     role:row.Type,
   }))
   console.log(rowsdata);
+
+  
+  useEffect(() => {
+    if (error) {
+      // alert.error(error);
+      dispatch(clearErrors());
+    }
+
+    dispatch(getallusers());
+  }, [dispatch,error]);
+
 
   return (
     <Box m="20px">
