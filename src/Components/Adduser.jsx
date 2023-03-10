@@ -26,7 +26,7 @@ const Adduser = () => {
         lastName: "",
         Employeeid: "",
         email: "",
-        contact: "",
+        contact: '',
         Type: "",
         Password: "",
         ConfirmPassword: "",

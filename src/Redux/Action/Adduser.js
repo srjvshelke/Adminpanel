@@ -7,46 +7,24 @@ export const Addauser = (userdata) => async (dispatch) => {
     dispatch({ type: ADDUSER_REQUEST });
 
     const config = { headers: { "Content-Type": "application/json" } };
-
-    const data = await fetch("http://192.168.1.178:7000/api/users/addnew", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json"
+    const { data } = await axios.post(
+      '/api/users/addnew',
+      {
+        firstname: firstName,
+        lastname: lastName,
+        employeeid: Employeeid,
+        emailid: email,
+        contact: contact,
+        type: Type,
+        password: Password,
+        confirmpassword: ConfirmPassword
       },
-      body: {
-        "firstname": "lastName",
-        "lastname": "lastName",
-        "employeeid": "Employeeid",
-        "emailid": "email",
-       "contact":1,
-        "type":"fewfew",
-        "password": "dffgsdcas",
-        "confirmpassword": "fsdfas"
-      }
-      // body: JSON.stringify(
-      //   {
-      //     firstName, lastName, Employeeid, email, contact, Type, Password, ConfirmPassword
-      //   })
-    });
-    // const { data } = await axios.post(
-    //   `http://192.168.1.178:7000/api/users/addnew`,
-      // {
-      //   firstname: firstName,
-      //   lastname: lastName,
-      //   employeeid: Employeeid,
-      //   emailid: email,
-      //   contact: contact,
-      //   type: Type,
-      //   password: Password,
-      //   confirmpassword: ConfirmPassword
-      // },
-    //   // config
-    // );
-    console.log(data);
+        config
+    );
     dispatch({ type: ADDUSER_SUCCESS, payload: data });
 
   } catch (error) {
-    dispatch({ type: ADDUSER_FAIL, payload: error.message });
+    dispatch({ type: ADDUSER_FAIL, payload: error.response.data.message });
   }
 
 }
@@ -55,7 +33,8 @@ export const Addauser = (userdata) => async (dispatch) => {
 export const getallusers = () => async (dispatch) => {
   try {
     dispatch({ type: ALL_USERS_REQUEST });
-    const { data } = await axios.get(`/users/getallusers`);
+    const config = { headers: { "Content-Type": "application/json" } };
+    const { data } = await axios.get(`api/users/getallusers`);
 
     dispatch({
       type: ALL_USERS_SUCCESS,

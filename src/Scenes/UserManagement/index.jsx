@@ -51,12 +51,12 @@ const UserManagement = () => {
     },
   ];
   const rowsdata = users.map((row,index)=>({
-    id:index+1,
-    name:row.firstName + row.firstName + " " + row.lastName,
-    employeeid:row.Employeeid ,
+    id:row.ID,
+    name: row.firstname + " " + row.lastname,
+    employeeid:row.employeeid ,
     contact:row.contact,
-    email:row.email,
-    role:row.Type,
+    email:row.emailid,
+    role:row.type,
   }))
   console.log(rowsdata);
 
