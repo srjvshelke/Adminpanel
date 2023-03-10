@@ -4,13 +4,14 @@ import { tokens } from "../../theme";
 import { mockDataContacts } from "../../data/mockData";
 import Header from "../../Components/Header";
 import { useTheme } from "@mui/material";
-
+import { useAlert } from "react-alert";
 import { Link } from "react-router-dom";
 import { memo, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { clearErrors, getallusers } from "../../Redux/Action/Adduser";
 
 const UserManagement = () => {
+  const alert = useAlert();
   const dispatch = new useDispatch();
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
@@ -68,7 +69,7 @@ const UserManagement = () => {
     }
 
     dispatch(getallusers());
-  }, [dispatch,error]);
+  }, [dispatch]);
 
 
   return (
