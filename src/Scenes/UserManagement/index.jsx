@@ -9,6 +9,7 @@ import { Link } from "react-router-dom";
 import { memo, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { clearErrors, getallusers } from "../../Redux/Action/Adduser";
+import LoadingScreen from "../../Components/Loaderscreen/LoadingScreen";
 
 const UserManagement = () => {
  
@@ -16,7 +17,7 @@ const UserManagement = () => {
   const theme = useTheme();
   const alert = useAlert();
   const colors = tokens(theme.palette.mode);
-  const {error, users} = useSelector((state) => state.allusers);
+  const {error, users,loading} = useSelector((state) => state.allusers);
 
   const columns = [
     { field: "id", headerName: "ID", flex: 0.5, headerAlign: 'center', align: 'center', FontSize: "60" },
@@ -73,7 +74,7 @@ const UserManagement = () => {
 
 
   return (
-    <Box m="20px">
+    loading? <LoadingScreen/>: <Box m="20px">
       <Header
         title="USER MANAGEMENT"
         subtitle="List of Users"

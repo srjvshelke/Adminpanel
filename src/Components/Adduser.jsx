@@ -9,6 +9,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { Addauser, clearErrors } from "../Redux/Action/Adduser";
 import { useEffect } from "react";
 import { useAlert } from "react-alert";
+import LoadingScreen from "./Loaderscreen/LoadingScreen";
+
 
 // import checkoutSchemaforadduser from "../formsvalidation/yupschema"
 
@@ -47,6 +49,7 @@ const Adduser = () => {
 
 
     return (
+        loading? <LoadingScreen/>:
         <Box m="20px" >
             <Header title="ADD USER" subtitle="Add a New User" />
 

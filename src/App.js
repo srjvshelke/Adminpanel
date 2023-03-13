@@ -2,7 +2,6 @@ import { useState } from "react";
 import { Routes, Route } from "react-router-dom";
 import Topbar from "./Scenes/global/Topbar";
 import Sidebarr from "./Scenes/global/Sidebar";
-
 import { CssBaseline, ThemeProvider } from "@mui/material";
 import { ColorModeContext, useMode } from "./theme";
 import Dashboard from "./Scenes/dashboard";
@@ -13,6 +12,7 @@ import WorkOrderList from "./Scenes/Workorderlist.js";
 import VisitList from "./Scenes/visitlist";
 import Reports from "./Scenes/Reports";
 import AddWorkorder from "./Scenes/Workorderlist.js/AddWorkorder";
+import LoadingScreen from "./Components/Loaderscreen/LoadingScreen";
 
 
 function App() {
@@ -24,8 +24,9 @@ function App() {
         <CssBaseline />
         <div className="app">
           <Sidebarr isSidebar={isSidebar} />
+        
           <main className="content">
-
+         
             <Topbar setIsSidebar={setIsSidebar} />
             <Routes>
               <Route path="/" element={<Dashboard />} />
@@ -36,6 +37,7 @@ function App() {
               <Route path="/VisitList" element={<VisitList />} />
               <Route path="/Reports" element={<Reports />} />
               <Route path="/AddWorkorder" element={<AddWorkorder />} />
+              <Route path="/LoadingScreen" element={<LoadingScreen />} />
             </Routes>
           </main>
         </div>
