@@ -33,7 +33,6 @@ export const Addauser = (userdata) => async (dispatch) => {
 export const getallusers = () => async (dispatch) => {
   try {
     dispatch({ type: ALL_USERS_REQUEST });
-    const config = { headers: { "Content-Type": "application/json" } };
     const { data } = await axios.get(`api/users/getallusers`);
 
     dispatch({

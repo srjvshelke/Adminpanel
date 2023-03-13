@@ -1,16 +1,17 @@
-import { Box, Button, TextField } from '@mui/material'
-import React from 'react'
+import { Box, Button, MenuItem, TextField } from '@mui/material'
 import { useTheme } from "@mui/material";
 import { tokens } from "../../theme";
 import { Formik } from "formik";
-import * as yup from "yup";
 import useMediaQuery from "@mui/material/useMediaQuery";
-import TextFieldforforms from "../../Components/TextField";
 import Buttonn from "../../Components/Button.jsx";
 import FileUploadIcon from '@mui/icons-material/FileUpload';
+import * as React from 'react';
+import CssBaseline from '@mui/material/CssBaseline';
+import Container from '@mui/material/Container';
+import Header from '../../Components/Header';
+import { checkoutSchemaforworkorder } from '../../formsvalidation/yupschema';
 function AddWorkorder() {
     const isNonMobile = useMediaQuery("(min-width:600px)");
-
     const theme = useTheme();
     const colors = tokens(theme.palette.mode);
 
@@ -18,45 +19,23 @@ function AddWorkorder() {
         console.log(values);
     };
     const initialValues = {
-        firstName: "",
-        lastName: "",
-        email: "",
-        contact: "",
-        address1: "",
-        address2: "",
+        workorderid: "",
+        title: "",
+        assignto: "",
+
     };
 
-    const phoneRegExp =
-        /^((\+[1-9]{1,4}[ -]?)|(\([0-9]{2,3}\)[ -]?)|([0-9]{2,4})[ -]?)*?[0-9]{3,4}[ -]?[0-9]{3,4}$/;
 
-    const checkoutSchema = yup.object().shape({
-        firstName: yup.string().required("required"),
-        lastName: yup.string().required("required"),
-        email: yup.string().email("invalid email").required("required"),
-        contact: yup
-            .string()
-            .matches(phoneRegExp, "Phone number is not valid")
-            .required("required"),
-        address1: yup.string().required("required"),
-        address2: yup.string().required("required"),
-    });
     return (
         <>
-            <Box sx={{
-                display: "flex",
-                height: "100vh",
-                justifyContent: "center",
-                alignItems: 'center',
-                // position: 'relative',
-                borderRadius: "5px",
-                backgroundColor: colors.primary[400],
-                padding: '20px'
-            }}
-            >
+            <Container component="main" width="100%" height="100vh">
+                <CssBaseline />
+                <Header title="ADD WORK ORDER" subtitle="" />
+
                 <Formik
                     onSubmit={handleFormSubmit}
                     initialValues={initialValues}
-                    validationSchema={checkoutSchema}
+                    validationSchema={checkoutSchemaforworkorder}
                 >
                     {({
                         values,
@@ -66,42 +45,106 @@ function AddWorkorder() {
                         handleChange,
                         handleSubmit,
                     }) => (
-                        <Box sx={{
-                            maxWidth: "700px",
-                            width: "100%",
-                            padding: "25px 30px",
-                            borderRadius: "25px",
-                            backgroundColor: colors.blueAccent[400],
-                        }}>
-                            <form onSubmit={handleSubmit}>
-                                <Box sx={{
-                                    display: "flex", flexWrap: "wrap", justifyContent: "space-between", alignItems: 'center', marginX: "20px", marginY: "30px"
-                                }}
-                                >
-
-                                    {/* <Box> */}
-                                    <TextFieldforforms label="Work Order ID" />
-                                    <TextFieldforforms label="Title" />
-                                    <TextFieldforforms label="Assign To" />
-
-                                    <Buttonn width='35%' buttonname="Upload File" marginBottom="15px" icon={<FileUploadIcon sx={{ mr: "10px" }} />} />
-                                </Box>
-                                <Box sx={{
-                                    display: "flex",
-                                    justifyContent: "space-evenly",
+                        <form onSubmit={handleSubmit}>
+                            <Box
+                                sx={{
+                                    marginTop: 5,
+                                    display: 'flex',
+                                    flexDirection: 'column',
                                     alignItems: 'center',
-                                }} >
-                                    <Buttonn  width='30%' buttonname="Add" marginright="20px"/>
-                                    <Buttonn  width='30%' buttonname="Close" />
+                                    width: "100%",
+                                }}
+                            >
+                                <Box sx={{
+                                    marginTop: 5,
+                                    borderRadius: "5px",
+                                    backgroundColor: colors.primary[400],
+                                    padding: '3%',
+
+                                }} x={{ mt: 2 }}>
+                                    <TextField
+                                        margin="normal"
+                                        required
+                                        fullWidth
+                                        id="workorderid"
+                                        label="Work Order ID"
+                                        name="workorderid"
+                                        autoComplete="workorderid"
+                                        type="text"
+                                        onBlur={handleBlur}
+                                        onChange={handleChange}
+                                        value={values.workorderid}
+                                        error={!!touched.workorderid && !!errors.workorderid}
+                                        helperText={touched.workorderid && errors.workorderid}
+                                        autoFocus
+                                    />
+                                    <TextField
+                                        margin="normal"
+                                        required
+                                        fullWidth
+                                        id="title"
+                                        label="Title"
+                                        name="title"
+                                        autoComplete="title"
+                                        type="text"
+                                        onBlur={handleBlur}
+                                        onChange={handleChange}
+                                        value={values.title}
+                                        error={!!touched.title && !!errors.title}
+                                        helperText={touched.title && errors.title}
+                                        autoFocus
+                                    />
+                                    <TextField
+                                        select
+                                        fullWidth
+                                        // type="text"
+                                        label="Assign To"
+                                        onBlur={handleBlur}
+                                        onChange={handleChange}
+                                        value={values.assignto}
+                                        name="assignto"
+                                        margin="normal"
+                                        required
+                                        id="assignto"
+                                        error={!!touched.assignto && !!errors.assignto}
+                                        helperText={touched.assignto && errors.assignto}
+                                        autoFocus
+                                    >
+                                        <MenuItem value="Contractor">Contractor</MenuItem>
+                                        <MenuItem value="Technician">Technician</MenuItem>
+                                    </TextField >
+
+                                    <Box sx={{
+                                        display: "flex",
+                                        justifyContent: "center",
+                                        alignItems: 'center',
+                                        mt: 3
+                                    }} >
+
+                                        <Button variant="contained" component="label" color="primary">
+                                            {" "}
+                                            <FileUploadIcon /> Upload  file
+                                            <input type="file" hidden />
+                                        </Button>
+
+                                    </Box>
+
+                                    <Box sx={{
+
+                                        display: "flex",
+                                        justifyContent: "space-evenly",
+                                        alignItems: 'center',
+                                        mt: 5
+                                    }} >
+                                        <Buttonn width='30%' buttonname="Add" marginright="20px" />
+                                        <Buttonn width='30%' buttonname="Close" />
+                                    </Box>
                                 </Box>
-                                {/* </Box> */}
-
-
-                            </form>
-
-                        </Box>)}
+                            </Box>
+                        </form>
+                    )}
                 </Formik>
-            </Box >
+            </Container>
 
         </>
     )

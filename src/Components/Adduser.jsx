@@ -13,13 +13,13 @@ import { useAlert } from "react-alert";
 // import checkoutSchemaforadduser from "../formsvalidation/yupschema"
 
 const Adduser = () => {
-    // const alert = useAlert();
+    const alert = useAlert();
     const isNonMobile = useMediaQuery("(min-width:600px)");
     const dispatch = new useDispatch();
 
     const { error, loading } = useSelector(
         (state) => state.adduser
-      );
+    );
 
     const initialValues = {
         firstName: "",
@@ -33,28 +33,16 @@ const Adduser = () => {
     };
 
     const handleFormSubmit = (values) => {
-  
-        // const { firstName, lastName, Employeeid, email, contact, Type, Password, ConfirmPassword } = values;
-        // const myForm = new FormData();
-    
-        // myForm.set("firstname", values.firstName);
-        // myForm.set("lastname",  values.lastName);
-        // myForm.set("employeeid",  values.Employeeid);
-        // myForm.set("emailid",  values.email);
-        // myForm.set("contact",  values.contact);
-        // myForm.set("type",  values.Type);
-        // myForm.set("password",  values.Password);
-        // myForm.set("confirmpassword",  values.ConfirmPassword);
         dispatch(Addauser(values));
     };
 
-    
-  useEffect(() => {
-    if (error) {
-    //   alert.error(error);
-      dispatch(clearErrors());
-    }
-  }, [dispatch, error]);
+
+    useEffect(() => {
+        if (error) {
+            alert.error(error);
+            dispatch(clearErrors());
+        }
+    }, [dispatch, error]);
 
 
 

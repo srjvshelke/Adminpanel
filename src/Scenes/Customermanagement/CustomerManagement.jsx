@@ -1,12 +1,12 @@
-import { Box, Button } from "@mui/material";
+import { Box, Button, Typography } from "@mui/material";
 import { DataGrid, GridToolbar } from "@mui/x-data-grid";
 import { tokens } from "../../theme";
-import { mockDataContacts } from "../../data/mockData";
 import Header from "../../Components/Header";
 import { useTheme } from "@mui/material";
 
 import { Link } from "react-router-dom";
 import { memo } from "react";
+import Filter from '../../Components/Filter';
 
 const CustomerManagement = () => {
   console.log("CustomerManagement");
@@ -14,70 +14,52 @@ const CustomerManagement = () => {
   const colors = tokens(theme.palette.mode);
 
   const columns = [
-    { field: "id", headerName: "ID", flex: 0.5, headerAlign: 'center', align: 'center', FontSize: "60" },
     {
       field: "name",
       headerName: "Name",
       flex: 1,
       align: 'center',
       headerAlign: 'center',
-
     },
-    { field: "employeeid", flex: 1, headerName: "Employee ID", align: 'center', headerAlign: 'center' },
-
     {
-      field: "contact",
-      headerName: "Contact",
+      field: "BPNumber",
+      headerName: "BP Number",
       flex: 1,
       headerAlign: 'center',
       align: 'center',
     },
     {
-      field: "email",
-      headerName: "Email ID",
+      field: "DRS",
+      headerName: "DRS",
       flex: 1,
       align: 'center',
       headerAlign: 'center'
     },
-    {
-      field: "role",
-      headerName: "Role",
-      flex: 1,
-      align: 'center',
-      headerAlign: 'center'
-    },
-  ];
 
+  ];
+  const rowsdata =[];
   return (
-    <Box m="20px">
+    <Box >
       <Header
-        title="Customer MANAGEMENT"
+        title="CUSTOMER MANAGEMENT"
         subtitle="List of Customer"
       />
-      <Box display="flex" justifyContent="flex-end" alignItems="center">
-      
-        <Button 
-        component={Link}
-          to="/AddWorkorder"
-          sx={{
-            marginLeft:"20px",
-            backgroundColor: colors.blueAccent[700],
-            color: colors.grey[100],
-            fontSize: "14px",
-            fontWeight: "bold",
-            padding: "8px 17px",
-            width: '100px',
-             height: '40px'
 
-          }}
-        >
-         ADD Customer
-        </Button>
+      <Box m="2%" display='flex' alignItems='center' flexDirection='row' sx={{
+        width: '96%',
+        minHeight: "10vh",
+        backgroundColor: colors.blueAccent[700],
+      }} >
+        <Typography m="2%" variant="h3" color={colors.grey[100]}>
+          Filter By  :
+        </Typography>
+        <Filter Label="Area" />
+        <Filter Label="Safety Status" />
       </Box>
-      <Box
-        m="40px 0 0 0"
+      <Box m="2%"
         height="75vh"
         sx={{
+          width: '96%',
           "& .MuiDataGrid-root": {
             border: "none",
 
@@ -110,10 +92,10 @@ const CustomerManagement = () => {
         }}
       >
         <DataGrid
-
-          rows={mockDataContacts}
+          // disableColumnFilter
+          rows={rowsdata}
           columns={columns}
-          components={{ Toolbar: GridToolbar }}
+          // components={{ Toolbar: GridToolbar }}
         />
       </Box>
     </Box>

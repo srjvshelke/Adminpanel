@@ -11,9 +11,10 @@ import { useDispatch, useSelector } from "react-redux";
 import { clearErrors, getallusers } from "../../Redux/Action/Adduser";
 
 const UserManagement = () => {
-  const alert = useAlert();
+ 
   const dispatch = new useDispatch();
   const theme = useTheme();
+  const alert = useAlert();
   const colors = tokens(theme.palette.mode);
   const {error, users} = useSelector((state) => state.allusers);
 
@@ -51,25 +52,24 @@ const UserManagement = () => {
       headerAlign: 'center'
     },
   ];
-  const rowsdata = users.map((row,index)=>({
+
+
+ const rowsdata = users  ? users.map((row,index)=>({
     id:row.ID,
     name: row.firstname + " " + row.lastname,
     employeeid:row.employeeid ,
     contact:row.contact,
     email:row.emailid,
     role:row.type,
-  }))
-  console.log(rowsdata);
-
-  
+  })) : [];
   useEffect(() => {
     if (error) {
-      // alert.error(error);
+      alert.error(error);
       dispatch(clearErrors());
     }
-
-    dispatch(getallusers());
-  }, [dispatch]);
+      dispatch(getallusers());
+   
+  }, []);
 
 
   return (
@@ -134,7 +134,6 @@ const UserManagement = () => {
         }}
       >
         <DataGrid
-
           rows={rowsdata}
           columns={columns}
           components={{ Toolbar: GridToolbar }}

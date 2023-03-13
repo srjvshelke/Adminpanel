@@ -8,7 +8,7 @@ const Filter = ({ title, Label }) => {
   const colors = tokens(theme.palette.mode);
   return (
     <>
-     <FormControl  variant="standard" sx={{ m: "2%", minWidth: 120 }}>
+     <FormControl  variant="standard" sx={{ m: "3%", minWidth: 120 }}>
             <InputLabel variant="standard" sx={{ fontSize:17 }} htmlFor="uncontrolled-native">
             {Label}
             </InputLabel>

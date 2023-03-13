@@ -17,3 +17,10 @@ export const checkoutSchemaforadduser = yup.object().shape({
     // Password:yup.string().required("required"),
     // ConfirmPassword: yup.string().required("required"),
 });
+
+
+export const checkoutSchemaforworkorder = yup.object().shape({
+    // workorderid: yup.string().required("required"),
+    // title: yup.string().required("required"),
+    // assignto: yup.string().email("invalid email").required("required"),
+});
