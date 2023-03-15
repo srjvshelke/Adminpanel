@@ -10,13 +10,23 @@ import CssBaseline from '@mui/material/CssBaseline';
 import Container from '@mui/material/Container';
 import Header from '../../Components/Header';
 import { checkoutSchemaforworkorder } from '../../formsvalidation/yupschema';
+import { Addworkorder, clearErrors } from '../../Redux/Action/Addworkorder';
+import { useAlert } from 'react-alert';
+import { useDispatch, useSelector } from 'react-redux';
 function AddWorkorder() {
     const isNonMobile = useMediaQuery("(min-width:600px)");
     const theme = useTheme();
     const colors = tokens(theme.palette.mode);
 
+    const alert = useAlert();
+    const dispatch = new useDispatch();
+
+    const { error, loading } = useSelector(
+        (state) => state.Addworkorder
+    );
+
     const handleFormSubmit = (values) => {
-        console.log(values);
+        dispatch(Addworkorder(values));
     };
     const initialValues = {
         workorderid: "",
@@ -24,6 +34,12 @@ function AddWorkorder() {
         assignto: "",
 
     };
+    useEffect(() => {
+        if (error) {
+            alert.error(error);
+            dispatch(clearErrors());
+        }
+    }, [dispatch, error]);
 
 
     return (
