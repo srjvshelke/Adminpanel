@@ -13,12 +13,13 @@ import { checkoutSchemaforworkorder } from '../../formsvalidation/yupschema';
 import { Addworkorder, clearErrors } from '../../Redux/Action/Addworkorder';
 import { useAlert } from 'react-alert';
 import { useDispatch, useSelector } from 'react-redux';
-import { useEffect } from "react";
+import { useEffect,useState } from "react";
 
 function AddWorkorder() {
     const isNonMobile = useMediaQuery("(min-width:600px)");
     const theme = useTheme();
     const colors = tokens(theme.palette.mode);
+    const [file , setFile] = useState("");
 
     const alert = useAlert();
     const dispatch = new useDispatch();
@@ -28,14 +29,18 @@ function AddWorkorder() {
     );
 
     const handleFormSubmit = (values) => {
+       
         dispatch(Addworkorder(values));
+    };
+    const fileinput = (event) => {
+        console.log(event.target.files[0]);
+        setFile(event.target.files[0])
     };
     const initialValues = {
         workorderid: "",
         title: "",
         assignto: "",
-        file:"vbgh"
-
+        myfile:""
     };
     useEffect(() => {
         if (error) {
@@ -140,11 +145,22 @@ function AddWorkorder() {
                                         mt: 3
                                     }} >
 
-                                        <Button variant="contained" component="label" color="primary">
-                                            {" "}
-                                            <FileUploadIcon /> Upload  file
-                                            <input type="file" hidden />
-                                        </Button>
+                                        {/* <Button variant="contained" component="label" color="primary" > */}
+                                        {/* {" "} */}
+
+                                        <TextField
+                                            type="file"
+                                            hidden
+                                            id="file"
+                                            name="file"
+                                            onChange={fileinput}
+                                            value={file}
+                                            // error={!!touched.file && !!errors.file}
+                                            // helperText={touched.file && errors.file}
+                                            >
+                                            <FileUploadIcon /> Upload file
+                                        </TextField >
+                                        {/* </Button> */}
 
                                     </Box>
 
