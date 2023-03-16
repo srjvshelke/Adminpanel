@@ -13,6 +13,8 @@ import { checkoutSchemaforworkorder } from '../../formsvalidation/yupschema';
 import { Addworkorder, clearErrors } from '../../Redux/Action/Addworkorder';
 import { useAlert } from 'react-alert';
 import { useDispatch, useSelector } from 'react-redux';
+import { useEffect } from "react";
+
 function AddWorkorder() {
     const isNonMobile = useMediaQuery("(min-width:600px)");
     const theme = useTheme();
@@ -32,6 +34,7 @@ function AddWorkorder() {
         workorderid: "",
         title: "",
         assignto: "",
+        file:"vbgh"
 
     };
     useEffect(() => {
@@ -39,7 +42,7 @@ function AddWorkorder() {
             alert.error(error);
             dispatch(clearErrors());
         }
-    }, [dispatch, error]);
+    }, []);
 
 
     return (

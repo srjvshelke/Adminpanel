@@ -1,4 +1,4 @@
-import { ADDWORKORDER_FAIL, ADDWORKORDER_REQUEST, ADDWORKORDER_SUCCESS, ALL_ADDWORKORDER_FAIL, ALL_ADDWORKORDER_REQUEST, ALL_ADDWORKORDER_SUCCESS, CLEAR_ERRORS, LOAD_ADDWORKORDER_FAIL, LOAD_ADDWORKORDER_REQUEST, LOAD_ADDWORKORDER_SUCCESS } from "../constants/Addworkorder";
+import { ADDWORKORDER_FAIL, ADDWORKORDER_REQUEST, ADDWORKORDER_SUCCESS, ALL_ADDWORKORDERS_FAIL, ALL_ADDWORKORDERS_REQUEST, ALL_ADDWORKORDERS_SUCCESS, CLEAR_ERRORS, LOAD_ADDWORKORDER_FAIL, LOAD_ADDWORKORDER_REQUEST, LOAD_ADDWORKORDER_SUCCESS } from "../constants/Addworkorder";
 
 export const Addworkorderreducer = (state = { Addworkorder: {} }, action) => {
     switch (action.type) {
@@ -45,19 +45,19 @@ export const Addworkorderreducer = (state = { Addworkorder: {} }, action) => {
 
 export const allAddworkorderreducer = (state = { AllAddworkorders: [] }, action) => {
     switch (action.type) {
-        case ALL_ADDWORKORDER_REQUEST:
+        case ALL_ADDWORKORDERS_REQUEST:
             return {
                 ...state,
                 loading: true,
             };
-        case ALL_ADDWORKORDER_SUCCESS:
+        case ALL_ADDWORKORDERS_SUCCESS:
             return {
                 ...state,
                 loading: false,
-                Addworkorders: action.payload,
+                AllAddworkorders: action.payload,
             };
 
-        case ALL_ADDWORKORDER_FAIL:
+        case ALL_ADDWORKORDERS_FAIL:
             return {
                 ...state,
                 loading: false,
