@@ -29,8 +29,14 @@ function AddWorkorder() {
     );
 
     const handleFormSubmit = (values) => {
+        const myForm = new FormData();
+        myForm.append("WorkorderID", values.workorderid);
+        myForm.append("Title", values.title);
+        myForm.append("AssignTo", values.assignto);
+        myForm.append("file", file,file.name);
+
        
-        dispatch(Addworkorder(values));
+        dispatch(Addworkorder(myForm));
     };
     const fileinput = (event) => {
         console.log(event.target.files[0]);
@@ -40,7 +46,6 @@ function AddWorkorder() {
         workorderid: "",
         title: "",
         assignto: "",
-        myfile:""
     };
     useEffect(() => {
         if (error) {
@@ -154,7 +159,7 @@ function AddWorkorder() {
                                             id="file"
                                             name="file"
                                             onChange={fileinput}
-                                            value={file}
+                                            // value={file}
                                             // error={!!touched.file && !!errors.file}
                                             // helperText={touched.file && errors.file}
                                             >

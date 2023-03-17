@@ -3,18 +3,13 @@ import { ADDWORKORDER_FAIL, ADDWORKORDER_REQUEST, ADDWORKORDER_SUCCESS,CLEAR_ERR
 
 export const Addworkorder = (Addworkorderdata) => async (dispatch) => {
   try {
-    const {workorderid,title, assignto,file} = Addworkorderdata
+    const {workorderid,title, assignto} = Addworkorderdata
     dispatch({ type: ADDWORKORDER_REQUEST });
 
     const config = { headers: { "Content-Type": "application/json" } };
     const { data } = await axios.post(
       '/api/workorder/addworkorder',
-      {
-        WorkorderID: workorderid,
-        Title: title,
-        AssignTo: assignto,
-        File:file
-      },
+      {Addworkorderdata},
         config
     );
     dispatch({ type: ADDWORKORDER_SUCCESS, payload: data });
