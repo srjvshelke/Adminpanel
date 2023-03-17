@@ -33,9 +33,8 @@ function AddWorkorder() {
         myForm.append("WorkorderID", values.workorderid);
         myForm.append("Title", values.title);
         myForm.append("AssignTo", values.assignto);
-        myForm.append("file", file,file.name);
-
-       
+        // myForm.append("file",file.name);
+        
         dispatch(Addworkorder(myForm));
     };
     const fileinput = (event) => {

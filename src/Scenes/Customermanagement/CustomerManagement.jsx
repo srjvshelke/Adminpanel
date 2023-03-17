@@ -38,6 +38,7 @@ const CustomerManagement = () => {
 
   ];
   const rowsdata =[];
+  
   return (
     <Box >
       <Header
