@@ -33,7 +33,7 @@ function AddWorkorder() {
         myForm.append("WorkorderID", values.workorderid);
         myForm.append("Title", values.title);
         myForm.append("AssignTo", values.assignto);
-        // myForm.append("file",file.name);
+        myForm.append("File",file);
         
         dispatch(Addworkorder(myForm));
     };

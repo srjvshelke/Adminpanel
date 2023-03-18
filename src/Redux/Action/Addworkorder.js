@@ -6,14 +6,13 @@ export const Addworkorder = (Addworkorderdata) => async (dispatch) => {
     console.log(Addworkorderdata);
     // const {workorderid,title, assignto,file} = Addworkorderdata
     dispatch({ type: ADDWORKORDER_REQUEST });
-    const config = {   headers: {
-      'Content-Type': 'multipart/form-data',
-      // authorization: `JWT ${token}`,
-    }};
+    const config = {
+      headers: { "Content-Type": "multipart/form-data" },
+    };
     const { data } = await axios.post(
       '/api/workorder/addworkorder',
      Addworkorderdata,
-      // config
+      config
     );
     dispatch({ type: ADDWORKORDER_SUCCESS, payload: data });
   } catch (error) {
