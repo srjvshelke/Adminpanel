@@ -1,13 +1,22 @@
 import { Button, FormControl, InputLabel, NativeSelect, Typography, useTheme } from '@mui/material'
 import { Box } from '@mui/material'
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import Filter from '../../Components/Filter';
 import { tokens } from '../../theme';
 import { Link } from "react-router-dom";
+import { customemanagementfilter } from '../../Filter/CustomerManagementfilter';
 
 function WorkOrderList() {
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
+  const [filterdata,setfilterdata] = useState({
+    Contractor:"",
+    Area:""
+  });
+var rowsdata = "";
+  useEffect(async()=>{
+    rowsdata = await customemanagementfilter(filterdata,rowsdata);
+  },[filterdata])
   return (
     <>
       <Box display='flex' flexDirection='column'
@@ -45,8 +54,8 @@ function WorkOrderList() {
           <Typography m="2%" variant="h3" color={colors.grey[100]}>
             Filter By  :
           </Typography>
-          <Filter Label="Contractor" />
-          <Filter Label="Area" />
+          <Filter Label="Contractor" setfilterdata={setfilterdata}/>
+          <Filter Label="Area"  setfilterdata={setfilterdata}/>
         </Box>
 
 
