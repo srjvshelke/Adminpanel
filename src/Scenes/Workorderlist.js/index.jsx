@@ -14,9 +14,9 @@ function WorkOrderList() {
     Area:""
   });
 var rowsdata = "";
-  useEffect(async()=>{
-    rowsdata = await customemanagementfilter(filterdata,rowsdata);
-  },[filterdata])
+  // useEffect(async()=>{
+  //   rowsdata = await customemanagementfilter(filterdata,rowsdata);
+  // },[filterdata])
   return (
     <>
       <Box display='flex' flexDirection='column'
@@ -54,8 +54,8 @@ var rowsdata = "";
           <Typography m="2%" variant="h3" color={colors.grey[100]}>
             Filter By  :
           </Typography>
-          <Filter Label="Contractor" setfilterdata={setfilterdata}/>
-          <Filter Label="Area"  setfilterdata={setfilterdata}/>
+          {/* <Filter Label="Contractor" setfilterdata={setfilterdata}/>
+          <Filter Label="Area"  setfilterdata={setfilterdata}/> */}
         </Box>
 
 
