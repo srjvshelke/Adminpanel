@@ -13,6 +13,7 @@ import VisitList from "./Scenes/visitlist";
 import Reports from "./Scenes/Reports";
 import AddWorkorder from "./Scenes/Workorderlist.js/AddWorkorder";
 import LoadingScreen from "./Components/Loaderscreen/LoadingScreen";
+import Login from "./Scenes/Login/Login";
 
 
 function App() {
@@ -23,11 +24,12 @@ function App() {
       <ThemeProvider theme={theme}>
         <CssBaseline />
         <div className="app">
-          <Sidebarr isSidebar={isSidebar} />
+          {/* <Sidebarr isSidebar={isSidebar} /> */}
         
           <main className="content">
          
-            <Topbar setIsSidebar={setIsSidebar} />
+         <Login/>
+            {/* <Topbar setIsSidebar={setIsSidebar} />
             <Routes>
               <Route path="/" element={<Dashboard />} />
               <Route path="/usermanagement" element={<UserManagement />} />
@@ -38,7 +40,7 @@ function App() {
               <Route path="/Reports" element={<Reports />} />
               <Route path="/AddWorkorder" element={<AddWorkorder />} />
               <Route path="/LoadingScreen" element={<LoadingScreen />} />
-            </Routes>
+            </Routes> */}
           </main>
         </div>
       </ThemeProvider>
