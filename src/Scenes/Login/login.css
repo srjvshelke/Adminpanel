@@ -1,11 +1,11 @@
 
 @import url('https://fonts.googleapis.com/css?family=Poppins:400,500,600,700&display=swap');
 *{
-  margin: 0;
+  /* margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-size: 1;
-  font-family: 'Poppins', sans-serif;
+  /* font-size: 1; */
+  /* font-family: 'Poppins', sans-serif; */
 }
 /* html,body{
   display: grid;
@@ -30,11 +30,11 @@
   display: flex;
   flex-direction: column;
   overflow: hidden;
-width: 25%;
+width: 31%;
   background: #fff;
-  padding: 2.2rem;
-  border-radius: 5px;
-  box-shadow: 0px 15px 20px rgba(0,0,0,0.1);
+  padding: 2.2vw;
+  border-radius: 1.1vw;
+  box-shadow: 0vw 1.1vw 1.1vw rgba(0,0,0,0.1);
 }
 .wrapper .title-text{
   display: flex;
@@ -42,7 +42,7 @@ width: 25%;
 }
 .wrapper .title{
   width: 50%;
-  font-size: 35px;
+  font-size:3.2vw;
   font-weight: 600;
   text-align: center;
   transition: all 0.6s cubic-bezier(0.68,-0.55,0.265,1.55);
@@ -50,23 +50,23 @@ width: 25%;
 .wrapper .slide-controls{
   position: relative;
   display: flex;
-  height: 50px;
+  height: 5vw;
   width: 100%;
   overflow: hidden;
-  margin: 30px 0 10px 0;
+  margin: 3.3vw 0 1.1vw 0;
   justify-content: space-between;
-  border: 1px solid lightgrey;
-  border-radius: 5px;
+  border: 0.3vw solid lightgrey;
+  border-radius: 5vw;
 }
 .slide-controls .slide{
 
   height: 100%;
   width: 100%;
   color: #fff;
-  font-size: 18px;
+  font-size: 2vw;
   font-weight: 500;
   text-align: center;
-  line-height: 48px;
+  line-height: 4.8vw;
   cursor: pointer;
   z-index: 1;
   transition: all 0.6s ease;
@@ -80,7 +80,7 @@ width: 25%;
   width: 100%;
   left: 0;
   z-index: 0;
-  border-radius: 5px;
+  border-radius: 1.1vw;
   background: -webkit-linear-gradient( #4545b2, #ad42fa);
   transition: all 0.6s cubic-bezier(0.68,-0.55,0.265,1.55);
 }
@@ -118,19 +118,19 @@ input[type="radio"]{
   transition: all 0.6s cubic-bezier(0.68,-0.55,0.265,1.55);
 }
 .form-inner form .field{
-  height: 50px;
+  height: 4.0vw;
   width: 100%;
-  margin-top: 20px;
+  margin-top: 2.0vw;
 }
 .form-inner form .field input{
   height: 100%;
   width: 100%;
   outline: none;
-  padding-left: 15px;
-  border-radius: 5px;
+  padding-left: 1.5vw;
+  border-radius: 0.5vw;
   border: 1px solid lightgrey;
-  border-bottom-width: 2px;
-  font-size: 17px;
+  border-bottom-width: 0.2vw;
+  font-size: 1.1vw;
   transition: all 0.3s ease;
 }
 .form-inner form .field input:focus{
@@ -145,11 +145,11 @@ form .field input:focus::placeholder{
   color: #b3b3b3;
 }
 .form-inner form .pass-link{
-  margin-top: 5px;
+  margin-top: 1.5vw;
 }
 .form-inner form .signup-link{
   text-align: center;
-  margin-top: 30px;
+  margin-top: 3vw;
 }
 .form-inner form .pass-link a,
 .form-inner form .signup-link a{
@@ -161,9 +161,9 @@ form .field input:focus::placeholder{
   text-decoration: underline;
 }
 form .btn{
-  height: 50px;
+  height: 2.5vw;
   width: 100%;
-  border-radius: 5px;
+  border-radius: 0.8vw;
   position: relative;
   overflow: hidden;
 }
@@ -173,7 +173,7 @@ form .btn .btn-layer{
   position: absolute;
   left: -100%;
   background: -webkit-linear-gradient(right, #4547b2, #ad42fa,#4545b2, #ad42fa);
-  border-radius: 5px;
+  border-radius: 0.2vw;
   transition: all 0.4s ease;;
 }
 form .btn:hover .btn-layer{
@@ -188,8 +188,8 @@ form .btn input[type="submit"]{
   border: none;
   color: #fff;
   padding-left: 0;
-  border-radius: 5px;
-  font-size: 20px;
+  border-radius:0.2vw;
+  font-size: 1.5vw;
   font-weight: 500;
   cursor: pointer;
 }

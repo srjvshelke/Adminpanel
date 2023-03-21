@@ -7,7 +7,7 @@ export const Addworkorder = (Addworkorderdata) => async (dispatch) => {
     // const {workorderid,title, assignto,file} = Addworkorderdata
     dispatch({ type: ADDWORKORDER_REQUEST });
     const config = {
-      headers: { "Content-Type": "multipart/form-data" },
+      headers: { "Content-Type":"multipart/form-data" },
     };
     const { data } = await axios.post(
       '/api/workorder/addworkorder',

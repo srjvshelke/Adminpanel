@@ -1,8 +1,16 @@
 import React, { useState } from "react";
 import "./login.css";
 import { useNavigate } from 'react-router-dom';
+import { clearErrors, login } from "../../Redux/Action/Login";
+import { useAlert } from "react-alert";
+import { useDispatch, useSelector } from "react-redux";
+import { memo, useEffect } from "react";
 function Login() {
-
+    const alert = useAlert();
+    const dispatch = new useDispatch();
+    const { error, loading, isAuthenticated } = useSelector(
+        (state) => state.user
+      );
     const navigator = useNavigate();
     const [logindata, setlogindata] = useState({
         email: "",
@@ -21,37 +29,15 @@ function Login() {
     const logincomplete = async (e) => {
         const { email, password } = logindata;
         e.preventDefault();
-        const res = await fetch("/", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify(
-                {
-                    email,
-                    password
-                })
-        });
-        const data = res.json();
-
-        if (res.status == 400 || !data) {
-            console.log("invalid credentials");
-            window.alert("invalid credentials");
-            setlogindata({
-                email: "",
-                password: ""
-            })
-        } else {
-            console.log("Login succefully");
-            window.alert("Login sucessfully");
-            navigator("/chat");
-            setlogindata({
-                email: "",
-                password: ""
-            })
-        }
-
+        dispatch(login(email, password));
     }
+
+    useEffect(() => {
+        if (error) {
+            alert.error(error);
+            dispatch(clearErrors());
+        }
+    });
     return (
         <>
             <div className="container">
@@ -91,4 +77,4 @@ function Login() {
     );
 }
 
-export default Login;
+export default memo(Login);

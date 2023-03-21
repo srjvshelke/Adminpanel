@@ -24,13 +24,12 @@ function App() {
       <ThemeProvider theme={theme}>
         <CssBaseline />
         <div className="app">
-          {/* <Sidebarr isSidebar={isSidebar} /> */}
-        
+          <Sidebarr isSidebar={isSidebar} />
+
           <main className="content">
-         
-         <Login/>
-            {/* <Topbar setIsSidebar={setIsSidebar} />
+            <Topbar setIsSidebar={setIsSidebar} />
             <Routes>
+            <Route path="/Login" element={<Login />} />
               <Route path="/" element={<Dashboard />} />
               <Route path="/usermanagement" element={<UserManagement />} />
               <Route path="/Adduser" element={<Adduser />} />
@@ -40,7 +39,8 @@ function App() {
               <Route path="/Reports" element={<Reports />} />
               <Route path="/AddWorkorder" element={<AddWorkorder />} />
               <Route path="/LoadingScreen" element={<LoadingScreen />} />
-            </Routes> */}
+              
+            </Routes>
           </main>
         </div>
       </ThemeProvider>
