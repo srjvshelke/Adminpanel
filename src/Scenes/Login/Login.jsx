@@ -5,6 +5,7 @@ import { clearErrors, login } from "../../Redux/Action/Login";
 import { useAlert } from "react-alert";
 import { useDispatch, useSelector } from "react-redux";
 import { memo, useEffect } from "react";
+import LoadingScreen from "../../Components/Loaderscreen/LoadingScreen";
 function Login() {
     const alert = useAlert();
     const dispatch = new useDispatch();
@@ -40,7 +41,8 @@ function Login() {
     });
     return (
         <>
-            <div className="container">
+           {loading?<LoadingScreen/>
+            : <div className="container">
                 <div className="wrapper">
                     <div className="title-text">
                         <div className="title login">
@@ -71,6 +73,7 @@ function Login() {
                     </div>
                 </div>
             </div>
+           }
 
 
         </>

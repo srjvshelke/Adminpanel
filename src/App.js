@@ -14,19 +14,24 @@ import Reports from "./Scenes/Reports";
 import AddWorkorder from "./Scenes/Workorderlist.js/AddWorkorder";
 import LoadingScreen from "./Components/Loaderscreen/LoadingScreen";
 import Login from "./Scenes/Login/Login";
+import { useDispatch, useSelector } from "react-redux";
 
 
 function App() {
   const [theme, colorMode] = useMode();
   const [isSidebar, setIsSidebar] = useState(true);
+  const { isAuthenticated, user } = useSelector((state) => state.user);
+
   return (
     <ColorModeContext.Provider value={colorMode}>
       <ThemeProvider theme={theme}>
         <CssBaseline />
-        <div className="app">
+        {
+          isAuthenticated? <div className="app">
           <Sidebarr isSidebar={isSidebar} />
 
           <main className="content">
+        
             <Topbar setIsSidebar={setIsSidebar} />
             <Routes>
             <Route path="/Login" element={<Login />} />
@@ -42,7 +47,9 @@ function App() {
               
             </Routes>
           </main>
-        </div>
+        </div>:  <Login />
+        }
+       
       </ThemeProvider>
     </ColorModeContext.Provider>
   );
