@@ -1,4 +1,4 @@
-
+import "../../index.css";
 import React, { memo } from 'react'
 
  function Dashboard() {
