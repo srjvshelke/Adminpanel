@@ -1,4 +1,4 @@
-import { useState,useEffect } from "react";
+import { useState, useEffect } from "react";
 import { Routes, Route } from "react-router-dom";
 import Topbar from "./Scenes/global/Topbar";
 import Sidebarr from "./Scenes/global/Sidebar";
@@ -30,7 +30,8 @@ function App() {
     <ColorModeContext.Provider value={colorMode}>
       <ThemeProvider theme={theme}>
         <CssBaseline />
-        {isAuthenticated ?
+        {
+          isAuthenticated ?
           <div className="app">
             <Sidebarr isSidebar={isSidebar} />
 
@@ -50,8 +51,8 @@ function App() {
                 <Route path="/LoadingScreen" element={<LoadingScreen />} />
               </Routes>
             </main>
-          </div> 
-          : <Login/>
+          </div>
+          : <Login />
         }
 
       </ThemeProvider>
