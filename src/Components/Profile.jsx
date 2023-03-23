@@ -1,8 +1,10 @@
 import { Box, IconButton, Typography, useTheme } from "@mui/material";
 import React, { memo } from 'react';
 import { tokens } from "../theme";
+import { useDispatch, useSelector } from "react-redux";
 
 function Profile() {
+    const { isAuthenticated, user } = useSelector((state) => state.user);
     const theme = useTheme();
     const colors = tokens(theme.palette.mode);
     console.log('profile');
@@ -25,7 +27,7 @@ function Profile() {
                         fontWeight="bold"
                         sx={{ m: "10px 0 0 0" }}
                     >
-                        SURAJ SHELKE
+                        {user.firstname+" " +user.lastname}
                     </Typography>
                     <Typography variant="h5" color={colors.greenAccent[500]}>
                         Admin
