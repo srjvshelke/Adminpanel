@@ -26,6 +26,7 @@ function App() {
     store.dispatch(loadUser());
 
   }, []);
+
   return (
     <ColorModeContext.Provider value={colorMode}>
       <ThemeProvider theme={theme}>
@@ -39,7 +40,7 @@ function App() {
 
               <Topbar setIsSidebar={setIsSidebar} />
               <Routes>
-                <Route path="/Login" element={<Login />} />
+                {/* <Route path="/Login" element={<Login />} /> */}
                 <Route path="/" element={<Dashboard />} />
                 <Route path="/usermanagement" element={<UserManagement />} />
                 <Route path="/Adduser" element={<Adduser />} />
@@ -53,6 +54,7 @@ function App() {
             </main>
           </div>
           : <Login />
+     
         }
 
       </ThemeProvider>
