@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 
 function Profile() {
     const { isAuthenticated, user } = useSelector((state) => state.user);
+    // const profilelink = 
     const theme = useTheme();
     const colors = tokens(theme.palette.mode);
     console.log('profile');
@@ -16,7 +17,10 @@ function Profile() {
                         alt="profile-user"
                         width="100px"
                         height="100px"
-                        src={`../../ASSEST/user.png`}
+                        src={
+                            user ? `http://localhost:7000/Uploads/Profile/${user.Profile}`
+                                :
+                                `../../ASSEST/user.png`}
                         style={{ cursor: "pointer", borderRadius: "50%" }}
                     />
                 </Box>
@@ -27,7 +31,7 @@ function Profile() {
                         fontWeight="bold"
                         sx={{ m: "10px 0 0 0" }}
                     >
-                        {user.firstname+" " +user.lastname}
+                        {user ? user.firstname + " " + user.lastname : "Suraj Shelke"}
                     </Typography>
                     <Typography variant="h5" color={colors.greenAccent[500]}>
                         Admin

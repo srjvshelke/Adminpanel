@@ -32,29 +32,32 @@ function App() {
       <ThemeProvider theme={theme}>
         <CssBaseline />
         {
-          isAuthenticated ?
-          <div className="app">
-            <Sidebarr isSidebar={isSidebar} />
+        isAuthenticated ?
+        <div className="app">
+          <Sidebarr isSidebar={isSidebar} />
 
-            <main className="content">
+          <main className="content">
 
-              <Topbar setIsSidebar={setIsSidebar} />
-              <Routes>
-                {/* <Route path="/Login" element={<Login />} /> */}
-                <Route path="/" element={<Dashboard />} />
-                <Route path="/usermanagement" element={<UserManagement />} />
-                <Route path="/Adduser" element={<Adduser />} />
-                <Route path="/CustomerManagement" element={<CustomerManagement />} />
-                <Route path="/WorkOrderList" element={<WorkOrderList />} />
-                <Route path="/VisitList" element={<VisitList />} />
-                <Route path="/Reports" element={<Reports />} />
-                <Route path="/AddWorkorder" element={<AddWorkorder />} />
-                <Route path="/LoadingScreen" element={<LoadingScreen />} />
-              </Routes>
-            </main>
-          </div>
-          : <Login />
-     
+            <Topbar setIsSidebar={setIsSidebar} />
+            <Routes>
+              {/* <Route path="/Login" element={<Login />} /> */}
+              <Route path="/" element={<Dashboard />} />
+              <Route path="/usermanagement" element={<UserManagement />} />
+              <Route path="/Adduser" element={<Adduser />} />
+              <Route path="/CustomerManagement" element={<CustomerManagement />} />
+              <Route path="/WorkOrderList" element={<WorkOrderList />} />
+              <Route path="/VisitList" element={<VisitList />} />
+              <Route path="/Reports" element={<Reports />} />
+              <Route path="/AddWorkorder" element={<AddWorkorder />} />
+              <Route path="/LoadingScreen" element={<LoadingScreen />} />
+            </Routes>
+          </main>
+        </div>
+
+        :
+
+        <Login />
+
         }
 
       </ThemeProvider>

@@ -7,9 +7,11 @@ import TextFieldforforms from "../Components/TextField";
 import { checkoutSchemaforadduser } from "../formsvalidation/yupschema";
 import { useDispatch, useSelector } from "react-redux";
 import { Addauser, clearErrors } from "../Redux/Action/Adduser";
-import { useEffect } from "react";
+
+import { useEffect,useState } from "react";
 import { useAlert } from "react-alert";
 import LoadingScreen from "./Loaderscreen/LoadingScreen";
+import FileUploadIcon from '@mui/icons-material/FileUpload';
 
 
 // import checkoutSchemaforadduser from "../formsvalidation/yupschema"
@@ -23,6 +25,8 @@ const Adduser = () => {
         (state) => state.adduser
     );
 
+    const [file , setFile] = useState("");
+
     const initialValues = {
         firstName: "",
         lastName: "",
@@ -35,9 +39,23 @@ const Adduser = () => {
     };
 
     const handleFormSubmit = (values) => {
-        dispatch(Addauser(values));
-    };
 
+        const myForm = new FormData();
+        myForm.append("firstname", values.firstName);
+        myForm.append("lastname", values.lastName);
+        myForm.append("employeeid", values.Employeeid);
+        myForm.append("emailid", values.email);
+        myForm.append("contact", values.contact);
+        myForm.append("type", values.Type);
+        myForm.append("password", values.Password);
+        myForm.append("confirmpassword", values.ConfirmPassword);
+        myForm.append("Profile",file);
+        dispatch(Addauser(myForm));
+    };
+    const fileinput = (event) => {
+        console.log(event.target.files[0]);
+        setFile(event.target.files[0])
+    };
 
     useEffect(() => {
         if (error) {
@@ -189,6 +207,33 @@ const Adduser = () => {
                                 helperText={touched.ConfirmPassword && errors.ConfirmPassword}
                                 sx={{ gridColumn: "span 2" }}
                             />
+
+                            
+<Box sx={{
+                                        display: "flex",
+                                        justifyContent: "center",
+                                        alignItems: 'center',
+                                        mt: 3
+                                    }} >
+
+                                        {/* <Button variant="contained" component="label" color="primary" > */}
+                                        {/* {" "} */}
+
+                                        <TextField
+                                            type="file"
+                                            hidden
+                                            id="file"
+                                            name="file"
+                                            onChange={fileinput}
+                                            // value={file}
+                                            // error={!!touched.file && !!errors.file}
+                                            // helperText={touched.file && errors.file}
+                                            >
+                                            <FileUploadIcon /> Upload Profile
+                                        </TextField >
+                                        {/* </Button> */}
+
+                                    </Box>
                         </Box>
                         <Box display="flex" justifyContent="center" alignItems='center' mt="40px">
                             <Button type="submit" color="secondary" variant="contained"

@@ -3,22 +3,27 @@ import { ADDUSER_FAIL, ADDUSER_REQUEST, ADDUSER_SUCCESS, ALL_USERS_FAIL, ALL_USE
 
 export const Addauser = (userdata) => async (dispatch) => {
   try {
-    const { firstName, lastName, Employeeid, email, contact, Type, Password, ConfirmPassword } = userdata
+    // const { firstName, lastName, Employeeid, email, contact, Type, Password, ConfirmPassword } = userdata
+    
     dispatch({ type: ADDUSER_REQUEST });
 
-    const config = { headers: { "Content-Type": "application/json" } };
+    // const config = { headers: { "Content-Type": "application/json" } };
+    const config = {
+      headers: { "Content-Type":"multipart/form-data" },
+    };
     const { data } = await axios.post(
       '/api/users/addnew',
-      {
-        firstname: firstName,
-        lastname: lastName,
-        employeeid: Employeeid,
-        emailid: email,
-        contact: contact,
-        type: Type,
-        password: Password,
-        confirmpassword: ConfirmPassword
-      },
+      // {
+      //   firstname: firstName,
+      //   lastname: lastName,
+      //   employeeid: Employeeid,
+      //   emailid: email,
+      //   contact: contact,
+      //   type: Type,
+      //   password: Password,
+      //   confirmpassword: ConfirmPassword
+      // },
+      userdata,
         config
     );
     dispatch({ type: ADDUSER_SUCCESS, payload: data });
