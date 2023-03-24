@@ -11,14 +11,16 @@ import { memo, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { clearErrors, getallusers } from "../../Redux/Action/Adduser";
 import LoadingScreen from "../../Components/Loaderscreen/LoadingScreen";
+import Filtercomponent from "../../Components/Filtercomponent";
+import { UserManagementarr } from "../../Filter/Filterarrays";
 
 const UserManagement = () => {
- 
+
   const dispatch = new useDispatch();
   const theme = useTheme();
   const alert = useAlert();
   const colors = tokens(theme.palette.mode);
-  const {error, users,loading} = useSelector((state) => state.allusers);
+  const { error, users, loading } = useSelector((state) => state.allusers);
 
   const columns = [
     { field: "id", headerName: "ID", flex: 0.5, headerAlign: 'center', align: 'center', FontSize: "60" },
@@ -56,30 +58,31 @@ const UserManagement = () => {
   ];
 
 
- const rowsdata = users  ? users.map((row,index)=>({
-    id:row.ID,
+  const rowsdata = users ? users.map((row, index) => ({
+    id: row.ID,
     name: row.firstname + " " + row.lastname,
-    employeeid:row.employeeid ,
-    contact:row.contact,
-    email:row.emailid,
-    role:row.type,
+    employeeid: row.employeeid,
+    contact: row.contact,
+    email: row.emailid,
+    role: row.type,
   })) : [];
   useEffect(() => {
     if (error) {
       alert.error(error);
       dispatch(clearErrors());
     }
-      dispatch(getallusers());
-   
+    dispatch(getallusers());
+
   }, []);
 
 
   return (
-    loading? <LoadingScreen/>: <Box m="20px">
+    loading ? <LoadingScreen /> : <Box m="20px">
       <Header
         title="USER MANAGEMENT"
         subtitle="List of Users"
       />
+
       <Box display="flex" justifyContent="flex-end" alignItems="center">
 
         <Button
@@ -100,6 +103,7 @@ const UserManagement = () => {
           ADD USER
         </Button>
       </Box>
+      <Filtercomponent Filtername="User Type" options ={["Area Managers","Contractor","Technician"]}/>
       <Box
         m="40px 0 0 0"
         height="75vh"
@@ -138,7 +142,7 @@ const UserManagement = () => {
         <DataGrid
           rows={rowsdata}
           columns={columns}
-          components={{ Toolbar: GridToolbar }}
+        // components={{ Toolbar: GridToolbar }}
         />
       </Box>
     </Box>

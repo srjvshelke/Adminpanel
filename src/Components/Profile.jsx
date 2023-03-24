@@ -31,7 +31,7 @@ function Profile() {
                         fontWeight="bold"
                         sx={{ m: "10px 0 0 0" }}
                     >
-                        {user ? user.firstname + " " + user.lastname : "Suraj Shelke"}
+                        {user ? user.firstname.toUpperCase() + " " + user.lastname.toUpperCase() : "Suraj Shelke"}
                     </Typography>
                     <Typography variant="h5" color={colors.greenAccent[500]}>
                         Admin
