@@ -17,14 +17,7 @@ const Filtercomponent = ({ Filtername, options }) => {
                 <Typography m="2%" variant="h4" color={colors.grey[100]}>
                     Filter By  :
                 </Typography>
-                {
-                    Filtername
-                }
-
-
-                <Filter Label={Filtername} options = { options} />
-
-
+                <Filter Label={Filtername} options = {options} />
             </Box>
         </>
     );

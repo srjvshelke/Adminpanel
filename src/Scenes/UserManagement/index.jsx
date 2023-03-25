@@ -1,4 +1,4 @@
-import { Box, Button } from "@mui/material";
+import { Box, Button ,Typography} from "@mui/material";
 import { DataGrid, GridToolbar } from "@mui/x-data-grid";
 import { tokens } from "../../theme";
 import { mockDataContacts } from "../../data/mockData";
@@ -13,6 +13,7 @@ import { clearErrors, getallusers } from "../../Redux/Action/Adduser";
 import LoadingScreen from "../../Components/Loaderscreen/LoadingScreen";
 import Filtercomponent from "../../Components/Filtercomponent";
 import { UserManagementarr } from "../../Filter/Filterarrays";
+import Filter from "../../Components/Filter";
 
 const UserManagement = () => {
 
@@ -103,7 +104,17 @@ const UserManagement = () => {
           ADD USER
         </Button>
       </Box>
-      <Filtercomponent Filtername="User Type" options ={["Area Managers","Contractor","Technician"]}/>
+      <Box m="2%" display='flex' alignItems='center' flexDirection='row' sx={{
+        width: '96%',
+        minHeight: "5vh",
+        backgroundColor: colors.blueAccent[700],
+      }} >
+        <Typography m="2%" variant="h4" color={colors.grey[100]}>
+          Filter By  :
+        </Typography>
+        <Filter Label="User Type" options={["Area Managers","Contractor","Technician"]} />
+     
+      </Box>
       <Box
         m="40px 0 0 0"
         height="75vh"

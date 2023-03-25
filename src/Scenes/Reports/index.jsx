@@ -21,7 +21,7 @@ function Reports() {
         <Typography m="2%" variant="h4" color={colors.grey[100]}>
           Filter By  :
         </Typography>
-        <Filter Label="Date" />
+        {/* <Filter Label="Date" /> */}
       </Box>
 
 

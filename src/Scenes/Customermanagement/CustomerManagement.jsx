@@ -54,8 +54,8 @@ const CustomerManagement = () => {
         <Typography m="2%" variant="h3" color={colors.grey[100]}>
           Filter By  :
         </Typography>
-        <Filter Label="Area" />
-        <Filter Label="Safety Status" />
+        {/* <Filter Label="Area" />
+        <Filter Label="Safety Status"  /> */}
       </Box>
       <Box m="2%"
         height="75vh"

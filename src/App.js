@@ -54,11 +54,11 @@ function App() {
           </main>
         </div>
 
-        :
+         :
 
         <Login />
 
-        }
+        } 
 
       </ThemeProvider>
     </ColorModeContext.Provider>

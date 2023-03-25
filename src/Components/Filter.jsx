@@ -15,16 +15,14 @@ const Filter = ({ Label, options }) => {
         <NativeSelect
           defaultValue={30}
           inputProps={{
-            name: { Label },
+            name: 'age',
             id: 'uncontrolled-native',
           }}
         >
-          {
-            options.map((email) => {
-              <option value={10}>{e}</option>
-            })
-
-          }
+          <option value={10}>{options[0]}</option>
+          <option value={20}>{options[1]}</option>
+          <option value={30}>{options[2]}</option>
+        
         </NativeSelect>
       </FormControl>
     </>

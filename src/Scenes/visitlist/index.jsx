@@ -20,13 +20,13 @@ function VisitList() {
         <Typography m="2%" variant="h4" color={colors.grey[100]}>
           Filter By  :
         </Typography>
-        <Filter Label="Contractor" />
+        {/* <Filter Label="Contractor" />
         <Filter Label="Visit Status" />
         <Filter Label="Location" />
         <Filter Label="Road Name" />
         <Filter Label="Colony" />
         <Filter Label="Society" />
-        <Filter Label="Building Name" />
+        <Filter Label="Building Name" /> */}
       </Box>
 
 
