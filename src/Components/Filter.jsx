@@ -2,8 +2,12 @@ import { Typography, Box, useTheme, InputLabel, NativeSelect, FormControl } from
 import { memo } from "react";
 import { tokens } from "../theme";
 
-const Filter = ({ Label, options }) => {
-  console.log("Filter");
+const Filter = ({ Label, options, setvalue }) => {
+  const selectedmenu = (e) => {
+    console.log(e.target.value);
+    setvalue(e.target.value)
+  }
+  // console.log("Filter");
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
   return (
@@ -13,16 +17,18 @@ const Filter = ({ Label, options }) => {
           {Label}
         </InputLabel>
         <NativeSelect
-          defaultValue={30}
+          onChange={selectedmenu}
           inputProps={{
-            name: 'age',
+            name: { Label },
             id: 'uncontrolled-native',
           }}
         >
-          <option value={10}>{options[0]}</option>
-          <option value={20}>{options[1]}</option>
-          <option value={30}>{options[2]}</option>
-        
+          {
+            options.map(e =>
+              <option>{e}</option>
+            )
+          }
+
         </NativeSelect>
       </FormControl>
     </>

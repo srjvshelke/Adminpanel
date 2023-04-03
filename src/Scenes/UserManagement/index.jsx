@@ -4,10 +4,9 @@ import { tokens } from "../../theme";
 import { mockDataContacts } from "../../data/mockData";
 import Header from "../../Components/Header";
 import { useTheme } from "@mui/material";
-
 import { useAlert } from "react-alert";
 import { Link } from "react-router-dom";
-import { memo, useEffect } from "react";
+import { memo, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { clearErrors, getallusers } from "../../Redux/Action/Adduser";
 import LoadingScreen from "../../Components/Loaderscreen/LoadingScreen";
@@ -22,6 +21,7 @@ const UserManagement = () => {
   const alert = useAlert();
   const colors = tokens(theme.palette.mode);
   const { error, users, loading } = useSelector((state) => state.allusers);
+  const [value , setvalue] = useState("");
 
   const columns = [
     { field: "id", headerName: "ID", flex: 0.5, headerAlign: 'center', align: 'center', FontSize: "60" },
@@ -112,7 +112,7 @@ const UserManagement = () => {
         <Typography m="2%" variant="h4" color={colors.grey[100]}>
           Filter By  :
         </Typography>
-        <Filter Label="User Type" options={["Area Managers","Contractor","Technician"]} />
+        <Filter Label="User Type" options={["Area Managers","Contractor","Technician"]} setvalue ={setvalue}  />
      
       </Box>
       <Box
