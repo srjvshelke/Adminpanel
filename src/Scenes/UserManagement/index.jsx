@@ -74,7 +74,7 @@ const UserManagement = () => {
     }
     dispatch(getallusers());
 
-  }, []);
+  }, [value]);
 
 
   return (
