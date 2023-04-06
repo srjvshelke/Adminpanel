@@ -1,4 +1,4 @@
-import { Box, Button ,Typography} from "@mui/material";
+import { Box, Button, Typography } from "@mui/material";
 import { DataGrid, GridToolbar } from "@mui/x-data-grid";
 import { tokens } from "../../theme";
 import { mockDataContacts } from "../../data/mockData";
@@ -21,7 +21,7 @@ const UserManagement = () => {
   const alert = useAlert();
   const colors = tokens(theme.palette.mode);
   const { error, users, loading } = useSelector((state) => state.allusers);
-  const [value , setvalue] = useState("");
+  const [value, setvalue] = useState("");
 
   const columns = [
     { field: "id", headerName: "ID", flex: 0.5, headerAlign: 'center', align: 'center', FontSize: "60" },
@@ -58,15 +58,31 @@ const UserManagement = () => {
     },
   ];
 
+  const rowsdatafilter = value != '' ? users.filter(async (user) => {
+    if (user.role == value) {
+      return true
+    } else {
+      return false
+    }
+  }) : []
 
-  const rowsdata = users ? users.map((row, index) => ({
+  const rowsdata = rowsdatafilter == [] ? users ? users.map((row, index) => ({
     id: row.ID,
     name: row.firstname + " " + row.lastname,
     employeeid: row.employeeid,
     contact: row.contact,
     email: row.emailid,
     role: row.type,
-  })) : [];
+  })) : [] : rowsdatafilter.map((row, index) => ({
+    id: row.ID,
+    name: row.firstname + " " + row.lastname,
+    employeeid: row.employeeid,
+    contact: row.contact,
+    email: row.emailid,
+    role: row.type,
+  }));
+
+  
   useEffect(() => {
     if (error) {
       alert.error(error);
@@ -112,8 +128,8 @@ const UserManagement = () => {
         <Typography m="2%" variant="h4" color={colors.grey[100]}>
           Filter By  :
         </Typography>
-        <Filter Label="User Type" options={["Area Managers","Contractor","Technician"]} setvalue ={setvalue}  />
-     
+        <Filter Label="User Type" options={["Area Managers", "Contractor", "Technician"]} setvalue={setvalue} />
+
       </Box>
       <Box
         m="40px 0 0 0"
