@@ -59,30 +59,29 @@ const UserManagement = () => {
   ];
 
   const rowsdatafilter = value != '' ? users.filter(async (user) => {
-    if (user.role == value) {
-      return true
+    if (user.type == value) {
+      rowsdatafilter.push(user);
     } else {
       return false
     }
-  }) : []
+  }) : [];
 
-  const rowsdata = rowsdatafilter == [] ? users ? users.map((row, index) => ({
+  const rowsdata = value == '' ? users.length != 0 ? users.map((row, index) => ({
     id: row.ID,
     name: row.firstname + " " + row.lastname,
     employeeid: row.employeeid,
     contact: row.contact,
     email: row.emailid,
     role: row.type,
-  })) : [] : rowsdatafilter.map((row, index) => ({
+  })) : [] : rowsdatafilter.length != 0 ? rowsdatafilter.map((row, index) => ({
     id: row.ID,
     name: row.firstname + " " + row.lastname,
     employeeid: row.employeeid,
     contact: row.contact,
     email: row.emailid,
     role: row.type,
-  }));
-
-  
+  })) : [];
+ 
   useEffect(() => {
     if (error) {
       alert.error(error);
@@ -90,7 +89,7 @@ const UserManagement = () => {
     }
     dispatch(getallusers());
 
-  }, [value]);
+  }, [dispatch,value]);
 
 
   return (
