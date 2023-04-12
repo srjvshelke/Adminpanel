@@ -17,6 +17,7 @@ const Filter = ({ Label, options, setvalue }) => {
           {Label}
         </InputLabel>
         <NativeSelect
+        defaultValue={null}
           onChange={selectedmenu}
           inputProps={{
             name: { Label },

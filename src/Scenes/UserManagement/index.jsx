@@ -13,8 +13,9 @@ import LoadingScreen from "../../Components/Loaderscreen/LoadingScreen";
 import Filtercomponent from "../../Components/Filtercomponent";
 import { UserManagementarr } from "../../Filter/Filterarrays";
 import Filter from "../../Components/Filter";
+// import { usermanagementfilter } from "../../Filter/CustomerManagementfilter";
 
-const UserManagement = () => {
+function UserManagement(){
 
   const dispatch = new useDispatch();
   const theme = useTheme();
@@ -58,13 +59,14 @@ const UserManagement = () => {
     },
   ];
 
-  const rowsdatafilter = value != '' ? users.filter(async (user) => {
+  const filterdata = users.filter((user) => {
     if (user.type == value) {
-      rowsdatafilter.push(user);
+      return true;
     } else {
-      return false
+      return false;
     }
-  }) : [];
+  });
+  const rowsdatafilter = value != '' ? filterdata : [];
 
   const rowsdata = value == '' ? users.length != 0 ? users.map((row, index) => ({
     id: row.ID,
@@ -81,7 +83,7 @@ const UserManagement = () => {
     email: row.emailid,
     role: row.type,
   })) : [];
- 
+
   useEffect(() => {
     if (error) {
       alert.error(error);
@@ -89,7 +91,7 @@ const UserManagement = () => {
     }
     dispatch(getallusers());
 
-  }, [dispatch,value]);
+  }, [dispatch, value]);
 
 
   return (

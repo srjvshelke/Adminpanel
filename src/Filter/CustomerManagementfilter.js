@@ -1,8 +1,8 @@
 
-export async function customemanagementfilter(checkforfilter,rowsdata){
+export async function customemanagementfilter(checkforfilter, rowsdata) {
     let Contractor = checkforfilter.Contractor;
     let Area = checkforfilter.Area;
-    const filterdata =async function (Contractor,Area) {
+    const filterdata = async function (Contractor, Area) {
         if (Contractor && Area) {
             let data = rowsdata.filter((e) => {
                 if (e.Contractor == Contractor && e.Area == Area) {
@@ -32,6 +32,25 @@ export async function customemanagementfilter(checkforfilter,rowsdata){
             return data;
         }
     }
-    let ans = await filterdata(Contractor,Area);
+    let ans = await filterdata(Contractor, Area);
+    return ans;
+}
+export async function usermanagementfilter(checkforfilter, rowsdata) {
+
+    const filterdata = async function (checkforfilter) {
+        if (checkforfilter) {
+            let data = rowsdata.filter(async (user) => {
+                if (user.type == checkforfilter) {
+                    return true;
+                } else {
+                    return false;
+                }
+            });
+            return data;
+        }else{
+            return null;
+        }
+    }
+    let ans = await filterdata(checkforfilter);
     return ans;
 }
