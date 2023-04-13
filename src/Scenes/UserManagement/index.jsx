@@ -68,7 +68,7 @@ function UserManagement(){
   });
   const rowsdatafilter = value != '' ? filterdata : [];
 
-  const rowsdata = value == '' ? users.length != 0 ? users.map((row, index) => ({
+  const rowsdata = value == '' || value == "All" ? users.length != 0 ? users.map((row, index) => ({
     id: row.ID,
     name: row.firstname + " " + row.lastname,
     employeeid: row.employeeid,
@@ -129,7 +129,7 @@ function UserManagement(){
         <Typography m="2%" variant="h4" color={colors.grey[100]}>
           Filter By  :
         </Typography>
-        <Filter Label="User Type" options={["Area Managers", "Contractor", "Technician"]} setvalue={setvalue} />
+        <Filter Label="User Type" options={["All","Area Managers", "Contractor", "Technician"]} value={value} setvalue={setvalue} />
 
       </Box>
       <Box

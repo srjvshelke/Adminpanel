@@ -1,8 +1,8 @@
-import { Typography, Box, useTheme, InputLabel, NativeSelect, FormControl } from "@mui/material";
+import { Typography, Box, useTheme, InputLabel,Select, FormControl, MenuItem } from "@mui/material";
 import { memo } from "react";
 import { tokens } from "../theme";
 
-const Filter = ({ Label, options, setvalue }) => {
+const Filter = ({ Label, options, value,setvalue }) => {
   const selectedmenu = (e) => {
     console.log(e.target.value);
     setvalue(e.target.value)
@@ -16,21 +16,20 @@ const Filter = ({ Label, options, setvalue }) => {
         <InputLabel variant="standard" sx={{ fontSize: 17 }} htmlFor="uncontrolled-native">
           {Label}
         </InputLabel>
-        <NativeSelect
-        defaultValue={null}
+        <Select
+          labelId="demo-simple-select-label"
+          id="demo-simple-select"
+          value={value}
+          label={Label}
           onChange={selectedmenu}
-          inputProps={{
-            name: { Label },
-            id: 'uncontrolled-native',
-          }}
         >
           {
             options.map(e =>
-              <option>{e}</option>
+              <MenuItem value={e}>{e}</MenuItem>
             )
           }
 
-        </NativeSelect>
+        </Select>
       </FormControl>
     </>
   );
