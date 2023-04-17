@@ -1,6 +1,6 @@
-import { CUSTOMER_FAIL, CUSTOMER_REQUEST, CUSTOMER_SUCCESS, ALL_CUSTOMER_FAIL, ALL_CUSTOMER_REQUEST, ALL_CUSTOMER_SUCCESS, CLEAR_ERRORS } from "../constants/Customerdata";
+import { CUSTOMER_FAIL, CUSTOMER_REQUEST, CUSTOMER_SUCCESS, ALL_CUSTOMER_FAIL, ALL_CUSTOMER_REQUEST, ALL_CUSTOMER_SUCCESS, CLEAR_ERRORS, LOAD_CUSTOMER_REQUEST, LOAD_CUSTOMER_SUCCESS, LOAD_CUSTOMER_FAIL } from "../constants/Customerdata";
 
-export const CUSTOMERreducer = (state = { CUSTOMER: {} }, action) => {
+export const CUSTOMERreducer = (state = { customers:[] }, action) => {
     switch (action.type) {
         case CUSTOMER_REQUEST:
         case LOAD_CUSTOMER_REQUEST:
@@ -12,21 +12,21 @@ export const CUSTOMERreducer = (state = { CUSTOMER: {} }, action) => {
             return {
                 ...state,
                 loading: false,
-                CUSTOMER: action.payload,
+                customers: action.payload,
             };
 
         case CUSTOMER_FAIL:
             return {
                 ...state,
                 loading: false,
-                CUSTOMER: null,
+                customers: null,
                 error: action.payload,
             };
 
         case LOAD_CUSTOMER_FAIL:
             return {
                 loading: false,
-                CUSTOMER: null,
+                customers: null,
                 error: action.payload,
             };
 
@@ -43,21 +43,21 @@ export const CUSTOMERreducer = (state = { CUSTOMER: {} }, action) => {
 
 
 
-export const allCUSTOMERsReducer = (state = { CUSTOMERs: [] }, action) => {
+export const allCUSTOMERsReducer = (state = { CUSTOMERS: [] }, action) => {
     switch (action.type) {
-        case ALL_CUSTOMERS_REQUEST:
+        case ALL_CUSTOMER_REQUEST:
             return {
                 ...state,
                 loading: true,
             };
-        case ALL_CUSTOMERS_SUCCESS:
+        case ALL_CUSTOMER_SUCCESS:
             return {
                 ...state,
                 loading: false,
                 CUSTOMERs: action.payload,
             };
 
-        case ALL_CUSTOMERS_FAIL:
+        case ALL_CUSTOMER_FAIL:
             return {
                 ...state,
                 loading: false,

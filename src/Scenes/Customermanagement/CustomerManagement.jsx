@@ -3,16 +3,22 @@ import { DataGrid, GridToolbar } from "@mui/x-data-grid";
 import { tokens } from "../../theme";
 import Header from "../../Components/Header";
 import { useTheme } from "@mui/material";
-
 import { Link } from "react-router-dom";
-import { memo } from "react";
 import Filter from '../../Components/Filter';
-
+import { memo, useEffect, useState, useMemo, useCallback } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { getallcustomerdata } from "../../Redux/Action/Customerdata";
+import { useAlert } from "react-alert";
+import LoadingScreen from "../../Components/Loaderscreen/LoadingScreen";
 const CustomerManagement = () => {
   console.log("CustomerManagement");
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
-
+  const dispatch = new useDispatch();
+  const alert = useAlert();
+  const { error, customers, loading } = useSelector((state) => state.Customers);
+  const [customerAreafilter, setcustomerfilterArea] = useState('');
+  const [customerSafetyfilter, setcustomerfilterSafety] = useState('');
   const columns = [
     {
       field: "name",
@@ -37,14 +43,26 @@ const CustomerManagement = () => {
     },
 
   ];
-  const rowsdata =[];
-  
+
+  const header = useMemo(() => {
+    return <Header
+      title="CUSTOMER MANAGEMENT"
+      subtitle="List of Users"
+    />
+  }, [])
+  const rowsdata  =customers !=undefined && customers.length != 0 ? customers.map((row, index) => ({
+    name: row.name,
+    BPNumber: row.CONTRACTACCOUNT,
+    DRS: row.DRSNO,
+  })):[];
+
+  useEffect(()=>{
+    dispatch(getallcustomerdata());
+  },[dispatch])
   return (
+    loading ? <LoadingScreen /> :
     <Box >
-      <Header
-        title="CUSTOMER MANAGEMENT"
-        subtitle="List of Customer"
-      />
+    {header}
 
       <Box m="2%" display='flex' alignItems='center' flexDirection='row' sx={{
         width: '96%',
@@ -54,6 +72,8 @@ const CustomerManagement = () => {
         <Typography m="2%" variant="h3" color={colors.grey[100]}>
           Filter By  :
         </Typography>
+        <Filter Label="Area" options={["All", "Area Managers", "Contractor", "Technician"]} value={customerAreafilter} setvalue={setcustomerfilterArea} />
+        <Filter Label="Safety Status" options={["Safe","Unsafe","Unknown"]} value={customerSafetyfilter} setvalue={setcustomerfilterSafety} />
         {/* <Filter Label="Area" />
         <Filter Label="Safety Status"  /> */}
       </Box>

@@ -1,0 +1,4 @@
+export const USERFILTER_TRIGGER = "USERFILTER_TRIGGER";
+export const FILTER_FAIL = "FILTER_FAIL";
+export const CLEAR_ERRORS = "CLEAR_ERRORS";
+

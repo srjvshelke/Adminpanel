@@ -5,16 +5,16 @@ import { CUSTOMER_FAIL, CUSTOMER_REQUEST, CUSTOMER_SUCCESS, ALL_CUSTOMER_FAIL, A
 // Get All CUSTOMERDATA
 export const getallcustomerdata = () => async (dispatch) => {
   try {
-    dispatch({ type: ALL_CUSTOMER_REQUEST });
+    dispatch({ type:CUSTOMER_REQUEST });
     const { data } = await axios.get(`api/customermanagement/customer`);
 
     dispatch({
-      type: ALL_CUSTOMER_SUCCESS,
+      type: CUSTOMER_SUCCESS,
       payload: data,
     });
   } catch (error) {
     dispatch({
-      type: ALL_CUSTOMER_FAIL,
+      type: CUSTOMER_FAIL,
       payload: error.response.data.message,
     });
   }
