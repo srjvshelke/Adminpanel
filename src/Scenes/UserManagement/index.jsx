@@ -68,13 +68,7 @@ function UserManagement() {
       subtitle="List of Users"
     />
   }, [])
-  // const filterdata = users.filter((user) => {
-  //   if (user.type == value) {
-  //     return true;
-  //   } else {
-  //     return false;
-  //   }
-  // });
+
 
  
 
@@ -83,10 +77,10 @@ function UserManagement() {
       alert.error(error);
       dispatch(clearErrors());
     }
-    // if (err) {
-    //   alert.error(err);
-    //   dispatch(clearErrorsfilter());
-    // }
+    if (err) {
+      alert.error(err);
+      dispatch(clearErrorsfilter());
+    }
     dispatch(getallusers());
     dispatch(userfilterdata(users, value));
   }, [error, dispatch, value]);
@@ -96,16 +90,6 @@ function UserManagement() {
   //   dispatch(userfilterdata(users,value));
   // },[value])
 
-
-
-
-  // useEffect(
-  // () => {
-
-
-  //   },
-  //   [],
-  // )
 
 
   const rowsdata = value == '' || value == "All" ? users.length != 0 ? users.map((row, index) => ({

@@ -20,6 +20,7 @@ const CustomerManagement = () => {
   const [customerAreafilter, setcustomerfilterArea] = useState('');
   const [customerSafetyfilter, setcustomerfilterSafety] = useState('');
   const columns = [
+    { field: "id", headerName: "ID", flex: 0.5, headerAlign: 'center', align: 'center', FontSize: "60" },
     {
       field: "name",
       headerName: "Name",
@@ -51,7 +52,8 @@ const CustomerManagement = () => {
     />
   }, [])
   const rowsdata  =customers !=undefined && customers.length != 0 ? customers.map((row, index) => ({
-    name: row.name,
+    id:row.ID,
+    name: row.NAME,
     BPNumber: row.CONTRACTACCOUNT,
     DRS: row.DRSNO,
   })):[];

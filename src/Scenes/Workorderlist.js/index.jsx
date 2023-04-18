@@ -5,16 +5,25 @@ import { memo, useEffect, useState, useMemo, useCallback } from "react";
 import Filter from '../../Components/Filter';
 import { tokens } from '../../theme';
 import { Link } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
 import { customemanagementfilter } from '../../Filter/CustomerManagementfilter';
 import { DataGrid, GridToolbar } from "@mui/x-data-grid";
+import { useAlert } from "react-alert";
 import Header from '../../Components/Header';
+import { geAllworkorder } from '../../Redux/Action/Addworkorder';
+import LoadingScreen from '../../Components/Loaderscreen/LoadingScreen';
 function WorkOrderList() {
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
   const [Contractorfilter, setContractorfilter] = useState('');
   const [Areafilter, setAreafilter] = useState('');
-  var rowsdata = "";
+  const dispatch = new useDispatch();
+  const alert = useAlert();
+  const { error, AllAddworkorders, loading } = useSelector((state) => state.getallworkorders);
+
   const columns = [
+    { field: "id", headerName: "ID", flex: 0.5, headerAlign: 'center', align: 'center', FontSize: "60" },
+
     {
       field: "WorkOrderID",
       headerName: "Work Order ID",
@@ -38,22 +47,31 @@ function WorkOrderList() {
     },
 
   ];
-  
+  const rowsdata = AllAddworkorders != undefined && AllAddworkorders.length != 0 ? AllAddworkorders.map((row, index) => ({
+    id: row.ID,
+    WorkOrderID: row.WorkorderID,
+    Title: row.Title,
+    DRS: row.AssignTo,
+  })) : [];
   const header = useMemo(() => {
     return <Header
-      title="Work Order List"
-      subtitle="List of Users"
+      title="WORK ORDER LIST"
+      // subtitle="List of Work Order"
     />
-  }, [])
-  // useEffect(async()=>{
-  //   rowsdata = await customemanagementfilter(filterdata,rowsdata);
-  // },[filterdata])
+  }, []);
+
+
+  useEffect(() => {
+    dispatch(geAllworkorder());
+  }, [dispatch]);
+
   return (
     <>
+  { loading ? <LoadingScreen /> :
       <Box display='flex' flexDirection='column'
       >
 
-{header}
+        {header}
         <Box m="2%" display="flex" justifyContent="flex-end" alignItems="center">
 
           <Button
@@ -87,7 +105,7 @@ function WorkOrderList() {
             Filter By  :
           </Typography>
           <Filter Label="Contractor" options={["All", "Area Managers", "Contractor", "Technician"]} value={Contractorfilter} setvalue={setContractorfilter} />
-        <Filter Label="Area" options={["Safe","Unsafe","Unknown"]} value={Areafilter} setvalue={setAreafilter} />
+          <Filter Label="Area" options={["Safe", "Unsafe", "Unknown"]} value={Areafilter} setvalue={setAreafilter} />
         </Box>
         <Box m="2%"
           height="75vh"
@@ -132,7 +150,7 @@ function WorkOrderList() {
           />
         </Box>
 
-      </Box>
+      </Box>}
     </>
   )
 }
